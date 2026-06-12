@@ -19,7 +19,7 @@
  */
 
 import type { ReactNode } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from './Icons';
 
 interface ButtonProps {
   children: ReactNode;

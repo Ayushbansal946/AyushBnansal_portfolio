@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink } from './Icons';
 
 interface CertificateCardProps {
   title: string;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X } from '../components/Icons';
 import CertificateCard from '../components/CertificateCard';
 import { useSectionData } from '../hooks/useSectionData';
 import { fallbackCertificates } from '../data/fallbackData';

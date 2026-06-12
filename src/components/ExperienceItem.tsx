@@ -6,7 +6,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus } from './Icons';
 
 interface ExperienceItemProps {
   number: string;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import { LogOut, Save, RefreshCw, Database } from 'lucide-react';
+import { LogOut, Save, RefreshCw, Database } from '../components/Icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fallbackProjects, fallbackExperiences, fallbackSkills, fallbackCertificates } from '../data/fallbackData';
 

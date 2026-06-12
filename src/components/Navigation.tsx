@@ -19,7 +19,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from './Icons';
 
 const navLinks = [
   { label: 'HOME',       href: '#hero' },
