@@ -23,7 +23,7 @@ export default function AdminDashboard() {
       const snap = await getDocs(collection(db, activeTab));
       const items = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       // Sort items by num if it exists
-      items.sort((a, b) => {
+      items.sort((a: any, b: any) => {
         if (a.num && b.num) return a.num.localeCompare(b.num);
         return 0;
       });

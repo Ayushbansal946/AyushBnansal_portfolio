@@ -21,8 +21,8 @@ declare global {
 export default function Login() {
   const [method, setMethod] = useState<'phone' | 'email'>('phone');
   // Hardcoded as requested
-  const [phone, setPhone] = useState('+917500039393');
-  const [email, setEmail] = useState('ayushbansal946@gmail.com');
+  const phone = '+917500039393';
+  const email = 'ayushbansal946@gmail.com';
   
   const [otp, setOtp] = useState('');
   const [step, setStep] = useState<'request' | 'verify' | 'emailSent'>('request');
