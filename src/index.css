@@ -1,0 +1,121 @@
+/* ============================================================
+   index.css — Global Styles & Design Tokens
+   Ayush Bansal Portfolio (Dark Mode)
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ── CSS Design Tokens (Dark Mode — always) ── */
+:root {
+  /* Background / Surface */
+  --bg:           #0A0A0A;
+  --surface:      #161616;
+
+  /* Brand Accent */
+  --accent:       #0055FF;
+  --accent-dark:  #003399;
+  --accent-glow:  rgba(0, 85, 255, 0.22);
+
+  /* Typography */
+  --text-main:    #E0E0E0;
+  --text-light:   #C0C0C0;
+  --text-muted:   #787878;
+
+  /* Structure */
+  --border:       #2A2A2A;
+  --white:        #F0F0F0;
+
+  /* Fonts */
+  --font-heading: 'Anton', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-sans:    'Inter', sans-serif;
+
+  /* Shadows */
+  --card-shadow:  0 10px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Tailwind v4 theme bridge ── */
+@theme {
+  --color-bg:           var(--bg);
+  --color-surface:      var(--surface);
+  --color-accent:       var(--accent);
+  --color-accent-dark:  var(--accent-dark);
+  --color-accent-glow:  var(--accent-glow);
+  --color-white:        var(--white);
+  --color-text-main:    var(--text-main);
+  --color-text-light:   var(--text-light);
+  --color-text-muted:   var(--text-muted);
+  --color-border:       var(--border);
+
+  --font-heading: var(--font-heading);
+  --font-body:    var(--font-body);
+  --font-sans:    var(--font-sans);
+}
+
+/* ── CSS Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── Text Selection ── */
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* Scrollbar — hidden for clean premium look */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; -ms-overflow-style: none; }
+
+/* ── Anton heading overrides ── */
+.font-heading {
+  font-family: var(--font-heading) !important;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+/* ® Trademark superscript — render as small elevated text, not a badge */
+sup {
+  font-size: 0.35em;
+  vertical-align: super;
+  line-height: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ── Anchor reset ── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Image reset ── */
+img {
+  max-width: 100%;
+  display: block;
+}
