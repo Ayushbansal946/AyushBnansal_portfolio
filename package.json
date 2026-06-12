@@ -1,7 +1,7 @@
 {
-  "name": "nakula-portfolio",
+  "name": "ayush-bansal-portfolio-v2.1",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
