@@ -1,40 +1,47 @@
-# Ayush Bansal Portfolio v2.1
+<div align="center">
 
-A premium, dynamic UI/UX Designer portfolio built with React, featuring a custom-built, secure Content Management System (Admin Dashboard) powered by Firebase. 
+# 🌟 Ayush Bansal | Premium UI/UX Portfolio v2.1
 
-This project was engineered from the ground up to provide a stunning frontend experience alongside a robust backend that allows the portfolio owner to add, edit, and delete their content without ever touching the code.
+*A stunning, dynamic UI/UX Designer portfolio engineered with React and Framer Motion, featuring a completely custom-built, secure Content Management System (Admin Dashboard) powered by Firebase.*
 
-![Portfolio Version](https://img.shields.io/badge/version-2.1-blue.svg)
-![React](https://img.shields.io/badge/React-19-61DAFB.svg?logo=react)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF.svg?logo=vite)
-![Firebase](https://img.shields.io/badge/Firebase-12-FFCA28.svg?logo=firebase)
+![Portfolio Version](https://img.shields.io/badge/version-2.1-blue.svg?style=for-the-badge)
+![React](https://img.shields.io/badge/React-19-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF.svg?style=for-the-badge&logo=vite)
+![Firebase](https://img.shields.io/badge/Firebase-12-FFCA28.svg?style=for-the-badge&logo=firebase&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
----
+**[Live Preview](https://ayush946portfolio.web.app) • [Admin Portal](https://ayush946portfolio.web.app/admin/login)**
+
+</div>
+
+<br />
 
 ## ✨ Key Features
 
-- **Premium UI/UX:** Built with modern design principles, including glassmorphism, smooth scrolling, and dynamic micro-animations using Framer Motion.
-- **Custom Admin Dashboard:** A hidden `/admin/login` route that provides a full CMS to manage Projects, Experience, Skills, and Certificates in real-time.
-- **Secure Authentication:** Passwordless login via Firebase Phone OTP and Email Magic Links, strictly locked down to the owner.
-- **Real-Time Database:** Powered by Firebase Firestore, ensuring instantaneous updates across the live portfolio when changes are made in the admin panel.
-- **Custom Iconography:** Removed generic icon libraries in favor of a dedicated `Icons.tsx` component, allowing for 100% custom SVG vectors directly exported from Figma.
-- **Serverless Contact Form:** Fully integrated with EmailJS to securely route client inquiries directly to the owner's inbox without a backend server.
-- **Optimized for Production:** Configured for Firebase Hosting with custom domain security restrictions.
+- 🎨 **Premium UI/UX:** Built with modern design principles, including glassmorphism, smooth scrolling, and dynamic micro-animations using Framer Motion.
+- 🎛️ **Custom Admin Dashboard:** A hidden `/admin/login` route that provides a full CMS to manage Projects, Experience, Skills, and Certificates in real-time.
+- 🔐 **Secure Authentication:** Passwordless login via Firebase Phone OTP and Email Magic Links, strictly locked down to the owner.
+- ⚡ **Real-Time Database:** Powered by Firebase Firestore, ensuring instantaneous updates across the live portfolio when changes are made in the admin panel.
+- ✒️ **Custom Iconography:** Bypassed generic icon libraries in favor of a dedicated `Icons.tsx` component, allowing for 100% custom SVG vectors directly exported from Figma.
+- 📧 **Serverless Contact Form:** Fully integrated with EmailJS to securely route client inquiries directly to the owner's inbox without a backend server.
+- 🚀 **Optimized for Production:** Configured for Firebase Hosting with custom domain security restrictions.
 
----
+<br />
 
 ## 🛠️ Tech Stack & Tools Used
 
-* **Frontend Framework:** React 19 + TypeScript
-* **Build Tool:** Vite
-* **Styling:** Tailwind CSS + Vanilla CSS (for custom tokens)
-* **Animations:** Framer Motion
-* **Backend & Database:** Firebase Firestore
-* **Authentication:** Firebase Auth (Phone OTP & Email Link)
-* **Hosting:** Firebase Hosting
-* **Email Service:** EmailJS
+| Category | Technology |
+|---|---|
+| **Frontend Framework** | React 19 + TypeScript |
+| **Build Tool** | Vite |
+| **Styling** | Tailwind CSS + Vanilla CSS (for custom tokens) |
+| **Animations** | Framer Motion |
+| **Backend & Database** | Firebase Firestore |
+| **Authentication** | Firebase Auth (Phone OTP & Email Link) |
+| **Hosting** | Firebase Hosting |
+| **Email Service** | EmailJS |
 
----
+<br />
 
 ## 📂 Folder Structure
 
@@ -53,11 +60,18 @@ ayush-bansal-portfolio-v2.1/
 │   └── index.css           # Global design system tokens and Tailwind setup
 ├── .firebaserc             # Firebase project configuration
 ├── firebase.json           # Firebase Hosting configuration
-├── package.json            # Project dependencies and scripts
-└── vite.config.ts          # Vite bundler configuration
+└── package.json            # Project dependencies and scripts
 ```
 
----
+<br />
+
+## 🔒 Security Implementations
+
+* **API Key Domain Restrictions:** The Firebase and EmailJS API keys have been strictly locked to `ayush946portfolio.web.app` and `localhost` via the Google Cloud Console to prevent unauthorized usage.
+* **Firestore Security Rules:** The database rules are configured to allow public read access for the portfolio, but strictly require an authenticated admin session for any write/delete operations.
+* **Protected Routes:** The `/admin` dashboard is protected by a React Context Auth wrapper that redirects unauthenticated users back to the login screen.
+
+<br />
 
 ## 🚀 Setup & Local Development
 
@@ -72,43 +86,25 @@ cd AyushBnansal_portfolio
 npm install
 ```
 
-### 3. Environment Setup
-Create a `.env` file in the root directory if you need to override any local variables (Firebase Config and EmailJS public keys are safely embedded in the source for public web access, protected by Domain Restrictions).
-
-### 4. Run Development Server
+### 3. Run Development Server
 ```bash
 npm run dev
 ```
 The application will be available at `http://localhost:5173`.
 
----
+<br />
 
-## 🔒 Security Implementations
+## 📬 Contact & Connect
 
-* **API Key Domain Restrictions:** The Firebase and EmailJS API keys have been strictly locked to `ayush946portfolio.web.app` and `localhost` via the Google Cloud Console to prevent unauthorized usage.
-* **Firestore Security Rules:** The database rules are configured to allow public read access for the portfolio, but strictly require an authenticated admin session for any write/delete operations.
-* **Protected Routes:** The `/admin` dashboard is protected by a React Context Auth wrapper that redirects unauthenticated users back to the login screen.
+Feel free to reach out for collaborations, freelance work, or just to say hi!
 
----
+- ✉️ **Email:** [ayushbansal946@gmail.com](mailto:ayushbansal946@gmail.com)
+- 📱 **Phone:** +91 7500039393
+- 🌐 **Live Portfolio:** [ayush946portfolio.web.app](https://ayush946portfolio.web.app)
 
-## 🌐 Deployment
+<br />
+<br />
 
-The application is configured to deploy directly to Firebase Hosting.
-
-1. Build the production bundle:
-```bash
-npm run build
-```
-
-2. Log into Firebase CLI:
-```bash
-npx firebase-tools login
-```
-
-3. Deploy to Firebase Hosting:
-```bash
-npx firebase-tools deploy --only hosting
-```
-
----
-*Designed & Developed by Ayush Bansal.*
+<div align="center">
+  <i>Designed & Developed by Ayush Bansal</i>
+</div>
