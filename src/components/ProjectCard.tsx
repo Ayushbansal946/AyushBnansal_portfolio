@@ -98,15 +98,15 @@ export const ProjectCard = React.memo(function ProjectCard({
                 transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                 className="overflow-hidden"
               >
-                <div className="pt-6 border-t border-[var(--border)]">
+                <div style={{ paddingTop: '32px', marginTop: '8px', borderTop: '1px solid var(--border)' }}>
                   
                   {/* Tags */}
-                  <div className="flex flex-wrap" style={{ gap: '0.75rem', marginBottom: '2.5rem' }}>
+                  <div className="flex flex-wrap" style={{ gap: '0.75rem', marginBottom: '2.5rem', marginTop: '8px' }}>
                     {tags.map((tag, i) => (
                       <span 
                         key={i} 
                         className="rounded-full border border-white/10 bg-white/5 font-body font-semibold uppercase"
-                        style={{ padding: '0.5rem 1rem', color: 'var(--text-light)', fontSize: '0.75rem', letterSpacing: '0.15em' }}
+                        style={{ display: 'inline-block', padding: '0.5rem 1rem', color: 'var(--text-light)', fontSize: '0.75rem', letterSpacing: '0.15em' }}
                       >
                         {tag}
                       </span>
