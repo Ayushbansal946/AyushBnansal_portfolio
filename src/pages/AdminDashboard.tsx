@@ -8,6 +8,48 @@ import { fallbackProjects, fallbackExperiences, fallbackSkills, fallbackCertific
 
 type SectionType = 'projects' | 'experiences' | 'skills' | 'certificates';
 
+function ImagePreview({ url }: { url: string }) {
+  const [dimensions, setDimensions] = useState<{w: number, h: number} | null>(null);
+  const [error, setError] = useState(false);
+  const isVideo = url.toLowerCase().includes('.mp4') || url.toLowerCase().includes('.webm');
+
+  useEffect(() => {
+    if (isVideo || !url) return;
+    const img = new Image();
+    img.onload = () => {
+      setDimensions({ w: img.naturalWidth, h: img.naturalHeight });
+    };
+    img.onerror = () => setError(true);
+    img.src = url;
+  }, [url, isVideo]);
+
+  if (!url) return null;
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '8px', padding: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px' }}>
+      {isVideo ? (
+        <video src={url} style={{ width: '60px', height: '45px', objectFit: 'cover', borderRadius: '4px' }} muted />
+      ) : (
+        <img src={url} style={{ width: '60px', height: '45px', objectFit: 'cover', borderRadius: '4px' }} alt="preview" />
+      )}
+      <div style={{ flex: 1, overflow: 'hidden' }}>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-light)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{url}</p>
+        {isVideo ? (
+          <p style={{ fontSize: '0.7rem', color: 'var(--accent)' }}>Video Format (Will autoplay in carousel)</p>
+        ) : dimensions ? (
+          <p style={{ fontSize: '0.7rem', color: dimensions.w < 800 ? '#FF6B6B' : 'var(--text-muted)' }}>
+            Resolution: {dimensions.w} x {dimensions.h} px {dimensions.w < 800 ? '(Warning: Low Res)' : ''}
+          </p>
+        ) : error ? (
+          <p style={{ fontSize: '0.7rem', color: '#FF6B6B' }}>Failed to load preview</p>
+        ) : (
+          <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Loading dimensions...</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AdminDashboard() {
   const { logout } = useAuth();
   const [activeTab, setActiveTab] = useState<SectionType>('projects');
@@ -94,6 +136,30 @@ export default function AdminDashboard() {
   const handleArrayChange = (index: number, field: string, value: string) => {
     const newData = [...data];
     newData[index][field] = value.split(',').map(s => s.trim());
+    setData(newData);
+  };
+
+  const handleImageUpdate = (itemIndex: number, imgIndex: number, newUrl: string) => {
+    const newData = [...data];
+    const newImages = [...newData[itemIndex].images];
+    newImages[imgIndex] = newUrl;
+    newData[itemIndex].images = newImages;
+    setData(newData);
+  };
+
+  const handleImageAdd = (itemIndex: number) => {
+    const newData = [...data];
+    if (!newData[itemIndex].images) newData[itemIndex].images = [];
+    if (newData[itemIndex].images.length >= 7) return;
+    newData[itemIndex].images = [...newData[itemIndex].images, ''];
+    setData(newData);
+  };
+
+  const handleImageRemove = (itemIndex: number, imgIndex: number) => {
+    const newData = [...data];
+    const newImages = [...newData[itemIndex].images];
+    newImages.splice(imgIndex, 1);
+    newData[itemIndex].images = newImages;
     setData(newData);
   };
 
@@ -327,6 +393,56 @@ export default function AdminDashboard() {
                       const isArray = Array.isArray(item[key]);
                       const isLongText = typeof item[key] === 'string' && (item[key].length > 60 || key === 'description');
                       
+                      if (key === 'images') {
+                        const imgArray = item[key] || [];
+                        const isInvalid = imgArray.length < 3 || imgArray.length > 7;
+                        return (
+                          <div key={key} style={{ padding: '16px', background: 'rgba(0,0,0,0.2)', borderRadius: '12px', border: isInvalid ? '1px solid rgba(255,107,107,0.5)' : '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                              <label style={{ ...labelStyle, marginBottom: 0 }}>
+                                Images & Videos <span style={{ color: isInvalid ? '#FF6B6B' : 'var(--accent)' }}>({imgArray.length} items. Min: 3, Max: 7)</span>
+                              </label>
+                              <button 
+                                onClick={() => handleImageAdd(index)}
+                                disabled={imgArray.length >= 7}
+                                style={{ padding: '6px 12px', background: 'var(--accent)', color: 'black', border: 'none', borderRadius: '4px', fontSize: '0.8rem', cursor: imgArray.length >= 7 ? 'not-allowed' : 'pointer', fontWeight: 'bold' }}
+                              >
+                                + Add Link
+                              </button>
+                            </div>
+                            <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '16px' }}>Recommended: 1200x900px (4:3 aspect ratio). Paste .mp4 URLs for video playback.</p>
+                            
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                              {imgArray.map((url: string, imgIdx: number) => (
+                                <div key={imgIdx} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                  <div style={{ display: 'flex', gap: '8px' }}>
+                                    <input
+                                      type="text"
+                                      placeholder="https://..."
+                                      value={url}
+                                      onChange={(e) => handleImageUpdate(index, imgIdx, e.target.value)}
+                                      style={{ ...inputStyle, flex: 1 }}
+                                      onFocus={e => e.currentTarget.style.borderColor = 'var(--white)'}
+                                      onBlur={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
+                                    />
+                                    <button 
+                                      onClick={() => handleImageRemove(index, imgIdx)}
+                                      style={{ padding: '0 16px', background: 'rgba(255,107,107,0.1)', color: '#FF6B6B', border: '1px solid rgba(255,107,107,0.3)', borderRadius: '8px', cursor: 'pointer' }}
+                                    >
+                                      X
+                                    </button>
+                                  </div>
+                                  {url && <ImagePreview url={url} />}
+                                </div>
+                              ))}
+                            </div>
+                            {isInvalid && (
+                              <p style={{ color: '#FF6B6B', fontSize: '0.85rem', marginTop: '16px', fontWeight: 'bold' }}>⚠️ Please provide between 3 and 7 image/video URLs.</p>
+                            )}
+                          </div>
+                        );
+                      }
+
                       return (
                         <div key={key}>
                           <label htmlFor={`input-${index}-${key}`} style={labelStyle}>

@@ -46,18 +46,31 @@ export const ProjectCarousel = React.memo(function ProjectCarousel({ images }: P
         animate={{ x: `-${index * 100}%` }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       >
-        {images.map((img, i) => (
-          <div key={i} className="min-w-full h-full relative">
+        {images.map((img, i) => {
+          const isVideo = img.toLowerCase().includes('.mp4') || img.toLowerCase().includes('.webm');
+          return (
+          <div key={i} className="min-w-full h-full relative bg-black/20">
             {/* Ambient color-grade mix overlay */}
             <div className="absolute inset-0 bg-[var(--accent)]/5 mix-blend-overlay z-10 pointer-events-none" />
-            <img 
-              src={img} 
-              className="w-full h-full object-cover transition-all duration-700 ease-in-out" 
-              alt={`Project screenshot ${i + 1}`} 
-              loading="lazy"
-            />
+            {isVideo ? (
+              <video 
+                src={img}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover transition-all duration-700 ease-in-out"
+              />
+            ) : (
+              <img 
+                src={img} 
+                className="w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                alt={`Project screenshot ${i + 1}`} 
+                loading="lazy"
+              />
+            )}
           </div>
-        ))}
+        )})}
       </motion.div>
 
       {/* Navigation Arrows */}
