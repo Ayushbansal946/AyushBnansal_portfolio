@@ -63,20 +63,20 @@ export const fallbackProjects = [
     id: 'project_4',
     num: '04',
     title: 'THE HUNGRY BEAR',
-    subtitle: 'Food Delivery',
-    description: 'Streamlined food ordering experience with a vibrant, appetizing visual design language.',
+    subtitle: 'Fine Dining Website',
+    description: 'A premium website experience for a 4-star restaurant, designed to streamline table reservations and showcase culinary excellence.',
     images: [
       'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2564&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2564&auto=format&fit=crop',
       'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2564&auto=format&fit=crop',
     ],
-    tags: ['UI Design', 'Food Delivery'],
-    type: 'Mobile App',
-    tools: 'Figma, Lottie, Notion',
+    tags: ['UI/UX Design', 'Web Design', 'Hospitality'],
+    type: 'Responsive Website',
+    tools: 'Figma, Chatgpt, Canva, Gemini',
     details: [
-      'Created a visually appetizing interface utilizing warm colors and large food imagery.',
-      'Optimized the cart and checkout flow to reduce cart abandonment by 15%.',
-      'Integrated real-time driver tracking map UI with custom branded markers.'
+      "Designed an elegant, appetizing interface that prominently highlights the restaurant's premium menu and top chef.",
+      'Streamlined the user flow to facilitate quick, last-minute table bookings and direct phone reservations.',
+      'Created a fully responsive layout to ensure a seamless and engaging browsing experience across desktop, tablet, and mobile devices.'
     ]
   }
 ];
