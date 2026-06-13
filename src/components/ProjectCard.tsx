@@ -101,11 +101,11 @@ export const ProjectCard = React.memo(function ProjectCard({
                 <div className="pt-6 border-t border-[var(--border)]">
                   
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-3 mb-10">
                     {tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[var(--text-main)] text-xs font-body font-bold uppercase tracking-widest"
+                        className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[var(--text-light)] text-[0.75rem] font-body font-semibold uppercase tracking-[0.15em]"
                       >
                         {tag}
                       </span>
@@ -113,25 +113,25 @@ export const ProjectCard = React.memo(function ProjectCard({
                   </div>
 
                   {/* Project Meta Info */}
-                  <div className="grid grid-cols-2 gap-6 mb-8 font-body">
+                  <div className="grid grid-cols-2 gap-8 mb-10 font-body p-6 rounded-2xl bg-white/[0.02] border border-white/5">
                     <div>
-                      <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>Project Type</p>
-                      <p style={{ fontSize: '1rem', color: 'var(--text-main)', fontWeight: 500 }}>{type}</p>
+                      <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '8px' }}>Project Type</p>
+                      <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: 500 }}>{type}</p>
                     </div>
                     <div>
-                      <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>Tools Used</p>
-                      <p style={{ fontSize: '1rem', color: 'var(--text-main)', fontWeight: 500 }}>{tools}</p>
+                      <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '8px' }}>Tools Used</p>
+                      <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: 500 }}>{tools}</p>
                     </div>
                   </div>
 
                   {/* Bullet Points */}
-                  <div>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>Key Details</p>
-                    <ul className="flex flex-col gap-4">
+                  <div className="pl-2">
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-main)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>Key Details</p>
+                    <ul className="flex flex-col gap-6">
                       {details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-4">
-                          <span style={{ color: 'var(--accent)', fontSize: '1.2rem', lineHeight: '1rem' }}>•</span>
-                          <span style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'var(--text-light)', lineHeight: 1.6 }}>
+                        <li key={i} className="flex items-start gap-5">
+                          <span style={{ color: 'var(--accent)', fontSize: '1.5rem', lineHeight: '1.2rem' }}>•</span>
+                          <span style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', color: 'var(--text-light)', lineHeight: 1.8 }}>
                             {detail}
                           </span>
                         </li>
