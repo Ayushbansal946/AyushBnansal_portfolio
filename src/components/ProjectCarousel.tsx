@@ -49,9 +49,15 @@ export const ProjectCarousel = React.memo(function ProjectCarousel({ images }: P
         {images.map((img, i) => {
           const isVideo = img.toLowerCase().includes('.mp4') || img.toLowerCase().includes('.webm');
           return (
-          <div key={i} className="min-w-full h-full relative bg-black/20">
+          <div key={i} className="min-w-full h-full relative bg-surface flex items-center justify-center">
+            {/* Loading Placeholder Text */}
+            <span className="absolute text-text-muted font-heading text-sm uppercase tracking-widest animate-pulse pointer-events-none">
+              Loading Asset...
+            </span>
+
             {/* Ambient color-grade mix overlay */}
-            <div className="absolute inset-0 bg-[var(--accent)]/5 mix-blend-overlay z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-[var(--accent)]/5 mix-blend-overlay z-20 pointer-events-none" />
+            
             {isVideo ? (
               <video 
                 src={img}
@@ -59,12 +65,12 @@ export const ProjectCarousel = React.memo(function ProjectCarousel({ images }: P
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover transition-all duration-700 ease-in-out"
+                className="w-full h-full object-cover transition-all duration-700 ease-in-out relative z-10"
               />
             ) : (
               <img 
                 src={img} 
-                className="w-full h-full object-cover transition-all duration-700 ease-in-out" 
+                className="w-full h-full object-cover transition-all duration-700 ease-in-out relative z-10" 
                 alt={`Project screenshot ${i + 1}`} 
                 loading="lazy"
               />
