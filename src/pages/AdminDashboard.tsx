@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { collection, getDocs, doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import { LogOut, Save, RefreshCw, Database } from '../components/Icons';
+import { LogOut, Save, RefreshCw } from '../components/Icons';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fallbackProjects, fallbackExperiences, fallbackSkills, fallbackCertificates, fallbackProfile } from '../data/fallbackData';
+import { fallbackProfile } from '../data/fallbackData';
 
 type SectionType = 'projects' | 'experiences' | 'skills' | 'certificates' | 'profile';
 
