@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { collection, getDocs, doc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { LogOut, Save, RefreshCw, Database } from '../components/Icons';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -161,6 +161,43 @@ export default function AdminDashboard() {
     newImages.splice(imgIndex, 1);
     newData[itemIndex].images = newImages;
     setData(newData);
+  };
+
+  const handleAddNew = () => {
+    const newItemId = `${activeTab}_${Date.now()}`;
+    let newItem: any = { id: newItemId };
+    if (activeTab === 'projects') {
+      newItem = { ...newItem, num: `0${data.length + 1}`, title: '', subtitle: '', description: '', images: ['', '', ''], tags: [], type: '', tools: '', details: [] };
+    } else if (activeTab === 'experiences') {
+      newItem = { ...newItem, role: '', company: '', duration: '', description: '', skills: [] };
+    } else if (activeTab === 'skills') {
+      newItem = { ...newItem, category: '', items: [] };
+    } else if (activeTab === 'certificates') {
+      newItem = { ...newItem, title: '', issuer: '', fileUrl: '', type: 'image' };
+    }
+    setData([...data, newItem]);
+  };
+
+  const handleDeleteItem = async (id: string, index: number) => {
+    if (data.length <= 1) {
+      alert('You must have at least one item!');
+      return;
+    }
+    if (!window.confirm('Are you sure you want to completely delete this item? This cannot be undone.')) return;
+    try {
+      if (id) {
+        await deleteDoc(doc(db, activeTab, id));
+      }
+      const newData = [...data];
+      newData.splice(index, 1);
+      setData(newData);
+      // Update cache immediately to prevent flash of old data
+      localStorage.setItem(`cache_${activeTab}`, JSON.stringify(newData));
+      setMessage('✅ Successfully deleted item');
+      setTimeout(() => setMessage(''), 3000);
+    } catch (err: any) {
+      setMessage('❌ Error deleting: ' + err.message);
+    }
   };
 
   // Common styles
@@ -382,10 +419,18 @@ export default function AdminDashboard() {
                     boxShadow: 'var(--card-shadow)'
                   }}
                 >
-                  <div style={{ marginBottom: '24px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
+                  <div style={{ marginBottom: '24px', borderBottom: '1px solid var(--border)', paddingBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', letterSpacing: '0.05em', color: 'var(--white)' }}>
-                      {item.title || item.role || item.id}
+                      {activeTab.toUpperCase().slice(0, activeTab.length - 1)} {index + 1}{item.title || item.role || item.category ? ` - ${item.title || item.role || item.category}` : ''}
                     </h3>
+                    {data.length > 1 && (
+                      <button 
+                        onClick={() => handleDeleteItem(item.id, index)}
+                        style={{ padding: '8px 16px', background: 'rgba(255,107,107,0.1)', color: '#FF6B6B', border: '1px solid rgba(255,107,107,0.3)', borderRadius: '8px', cursor: 'pointer', fontFamily: 'var(--font-heading)', fontSize: '0.9rem', letterSpacing: '0.05em' }}
+                      >
+                        Delete
+                      </button>
+                    )}
                   </div>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
@@ -478,6 +523,34 @@ export default function AdminDashboard() {
                   </div>
                 </div>
               ))}
+              <button
+                onClick={handleAddNew}
+                style={{
+                  width: '100%',
+                  padding: '24px',
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '2px dashed var(--border)',
+                  borderRadius: '16px',
+                  color: 'var(--text-light)',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.2rem',
+                  letterSpacing: '0.1em',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--accent)';
+                  e.currentTarget.style.color = 'var(--white)';
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border)';
+                  e.currentTarget.style.color = 'var(--text-light)';
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                }}
+              >
+                + ADD NEW {activeTab.toUpperCase().slice(0, activeTab.length - 1)}
+              </button>
             </motion.div>
           )}
         </div>
