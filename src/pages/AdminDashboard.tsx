@@ -12,9 +12,10 @@ function ImagePreview({ url }: { url: string }) {
   const [dimensions, setDimensions] = useState<{w: number, h: number} | null>(null);
   const [error, setError] = useState(false);
   const isVideo = url.toLowerCase().includes('.mp4') || url.toLowerCase().includes('.webm');
+  const isPdf = url.toLowerCase().includes('.pdf');
 
   useEffect(() => {
-    if (isVideo || !url) return;
+    if (isVideo || isPdf || !url) return;
     const img = new Image();
     img.onload = () => {
       setDimensions({ w: img.naturalWidth, h: img.naturalHeight });
@@ -29,6 +30,8 @@ function ImagePreview({ url }: { url: string }) {
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '8px', padding: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px' }}>
       {isVideo ? (
         <video src={url} style={{ width: '60px', height: '45px', objectFit: 'cover', borderRadius: '4px' }} muted />
+      ) : isPdf ? (
+        <div style={{ width: '60px', height: '45px', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px', fontSize: '0.6rem', color: 'var(--text-muted)' }}>PDF</div>
       ) : (
         <img src={url} style={{ width: '60px', height: '45px', objectFit: 'cover', borderRadius: '4px' }} alt="preview" />
       )}
@@ -36,6 +39,8 @@ function ImagePreview({ url }: { url: string }) {
         <p style={{ fontSize: '0.75rem', color: 'var(--text-light)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{url}</p>
         {isVideo ? (
           <p style={{ fontSize: '0.7rem', color: 'var(--accent)' }}>Video Format (Will autoplay in carousel)</p>
+        ) : isPdf ? (
+          <p style={{ fontSize: '0.7rem', color: 'var(--accent)' }}>PDF Document Link</p>
         ) : dimensions ? (
           <p style={{ fontSize: '0.7rem', color: dimensions.w < 800 ? '#FF6B6B' : 'var(--text-muted)' }}>
             Resolution: {dimensions.w} x {dimensions.h} px {dimensions.w < 800 ? '(Warning: Low Res)' : ''}
@@ -448,9 +453,18 @@ export default function AdminDashboard() {
                   </div>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
-                    {Object.keys(item).filter(k => k !== 'id').map(key => {
+                    {(() => {
+                      const fieldOrder: Record<string, string[]> = {
+                        profile: ['resumeUrl', 'phone', 'email', 'linkedin', 'behance'],
+                        projects: ['num', 'title', 'subtitle', 'type', 'tools', 'description', 'tags', 'images'],
+                        experiences: ['num', 'role', 'company', 'duration', 'description', 'skills'],
+                        skills: ['category', 'items'],
+                        certificates: ['title', 'issuer', 'type', 'logoUrl', 'fileUrl']
+                      };
+                      const keysToRender = fieldOrder[activeTab] || Object.keys(item).filter(k => k !== 'id');
+                      return keysToRender.map(key => {
                       const isArray = Array.isArray(item[key]);
-                      const isLongText = typeof item[key] === 'string' && (item[key].length > 60 || key === 'description');
+                      const isLongText = (typeof item[key] === 'string' && item[key].length > 60) || key === 'description';
                       
                       if (key === 'images') {
                         const imgArray = item[key] || [];
@@ -511,7 +525,7 @@ export default function AdminDashboard() {
                           {isLongText ? (
                              <textarea
                              id={`input-${index}-${key}`}
-                             value={item[key]}
+                             value={item[key] || ''}
                              onChange={(e) => handleItemChange(index, key, e.target.value)}
                              style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }}
                              onFocus={e => e.currentTarget.style.borderColor = 'var(--white)'}
@@ -521,7 +535,7 @@ export default function AdminDashboard() {
                             <input
                               id={`input-${index}-${key}`}
                               type="text"
-                              value={isArray ? item[key].join(', ') : item[key]}
+                              value={isArray ? (item[key] || []).join(', ') : (item[key] || '')}
                               onChange={(e) => isArray 
                                 ? handleArrayChange(index, key, e.target.value)
                                 : handleItemChange(index, key, e.target.value)
@@ -531,9 +545,12 @@ export default function AdminDashboard() {
                               onBlur={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
                             />
                           )}
+                          {(key === 'fileUrl' || key === 'logoUrl' || key === 'resumeUrl') && item[key] && (
+                            <ImagePreview url={item[key]} />
+                          )}
                         </div>
                       );
-                    })}
+                    })})()}
                   </div>
                 </div>
               ))}
