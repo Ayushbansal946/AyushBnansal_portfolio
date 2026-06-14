@@ -131,6 +131,12 @@ export default function AdminDashboard() {
     setData(newData);
   };
 
+  const handleNewlineArrayChange = (index: number, field: string, value: string) => {
+    const newData = [...data];
+    newData[index][field] = value.split('\n');
+    setData(newData);
+  };
+
   const handleImageUpdate = (itemIndex: number, imgIndex: number, newUrl: string) => {
     const newData = [...data];
     const newImages = [...newData[itemIndex].images];
@@ -416,7 +422,8 @@ export default function AdminDashboard() {
                       const keysToRender = fieldOrder[activeTab] || Object.keys(item).filter(k => k !== 'id');
                       return keysToRender.map(key => {
                       const isArray = Array.isArray(item[key]);
-                      const isLongText = (typeof item[key] === 'string' && item[key].length > 60) || key === 'description';
+                      const isNewlineArray = key === 'details' || key === 'bullets';
+                      const isLongText = (typeof item[key] === 'string' && item[key].length > 60) || key === 'description' || isNewlineArray;
                       
                       if (key === 'images') {
                         const imgArray = item[key] || [];
@@ -471,14 +478,18 @@ export default function AdminDashboard() {
                       return (
                         <div key={key}>
                           <label htmlFor={`input-${index}-${key}`} style={labelStyle}>
-                            {key} {isArray && <span style={{ color: 'var(--accent)' }}>(Comma separated)</span>}
+                            {key} {isArray && !isNewlineArray && <span style={{ color: 'var(--accent)' }}>(Comma separated)</span>}
+                            {isNewlineArray && <span style={{ color: 'var(--accent)' }}>(One item per line)</span>}
                           </label>
                           
                           {isLongText ? (
                              <textarea
                              id={`input-${index}-${key}`}
-                             value={item[key] || ''}
-                             onChange={(e) => handleItemChange(index, key, e.target.value)}
+                             value={isNewlineArray ? (item[key] || []).join('\n') : (item[key] || '')}
+                             onChange={(e) => isNewlineArray
+                               ? handleNewlineArrayChange(index, key, e.target.value)
+                               : handleItemChange(index, key, e.target.value)
+                             }
                              style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }}
                              onFocus={e => e.currentTarget.style.borderColor = 'var(--white)'}
                              onBlur={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'}
