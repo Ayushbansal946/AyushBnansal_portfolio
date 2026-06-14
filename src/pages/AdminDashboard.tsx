@@ -117,34 +117,7 @@ export default function AdminDashboard() {
     setSaving(false);
   };
 
-  const handleInitializeDatabase = async () => {
-    if (!window.confirm("This will overwrite your database with the default template data. Are you sure?")) return;
-    setSaving(true);
-    setMessage('Initializing database... please wait.');
-    try {
-      // Migrate Projects
-      for (const item of fallbackProjects) {
-        await setDoc(doc(db, 'projects', item.id), item);
-      }
-      // Migrate Experiences
-      for (const item of fallbackExperiences) {
-        await setDoc(doc(db, 'experiences', item.id), item);
-      }
-      // Migrate Skills
-      for (const item of fallbackSkills) {
-        await setDoc(doc(db, 'skills', item.id), item);
-      }
-      // Migrate Certificates
-      for (const item of fallbackCertificates) {
-        await setDoc(doc(db, 'certificates', item.id), item);
-      }
-      setMessage('✅ Database successfully initialized with all template data!');
-      fetchData(); // Refresh the view
-    } catch (err: any) {
-      setMessage('❌ Error initializing database: ' + err.message);
-    }
-    setSaving(false);
-  };
+
 
   const handleItemChange = (index: number, field: string, value: string) => {
     const newData = [...data];
@@ -325,28 +298,7 @@ export default function AdminDashboard() {
               {activeTab}
             </h2>
             <div style={{ display: 'flex', gap: '16px' }}>
-              <button
-                onClick={handleInitializeDatabase}
-                disabled={saving || loading}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '12px 24px',
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1rem',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  border: '1px solid #FF6B6B',
-                  backgroundColor: 'rgba(255, 107, 107, 0.1)',
-                  color: '#FF6B6B',
-                  borderRadius: '8px',
-                  cursor: (saving || loading) ? 'not-allowed' : 'pointer',
-                  opacity: (saving || loading) ? 0.5 : 1,
-                }}
-              >
-                <Database size={16} /> Init DB
-              </button>
+
               <button
                 onClick={fetchData}
                 disabled={loading}
