@@ -17,8 +17,11 @@
 
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
+import { useProfileSettings } from '../hooks/useProfileSettings';
 
 export default function HeroSection() {
+  const profile = useProfileSettings();
+
   return (
     <section
       id="hero"
@@ -156,7 +159,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap gap-4" style={{ marginTop: '48px' }}>
             <Button 
               as="a" 
-              href="/Ayush_Bansal_UIUX_Resume.pdf" 
+              href={profile.resumeUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
               variant="primary"

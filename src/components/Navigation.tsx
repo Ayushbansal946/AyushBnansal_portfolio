@@ -20,6 +20,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from './Icons';
+import { useProfileSettings } from '../hooks/useProfileSettings';
 
 const navLinks = [
   { label: 'HOME',       href: '#hero' },
@@ -41,6 +42,13 @@ const socialLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const profile = useProfileSettings();
+  
+  const socialLinks = [
+    { label: 'LinkedIn', href: profile.linkedin },
+    { label: 'Behance',  href: profile.behance },
+    { label: 'Email',    href: `mailto:${profile.email}` },
+  ];
 
   // Toggle frosted-glass navbar after scrolling 50px
   useEffect(() => {

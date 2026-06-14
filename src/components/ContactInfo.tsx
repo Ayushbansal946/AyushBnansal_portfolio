@@ -12,8 +12,10 @@
  */
 
 import React from 'react';
+import { useProfileSettings } from '../hooks/useProfileSettings';
 
 export const ContactInfo = React.memo(function ContactInfo() {
+  const profile = useProfileSettings();
   const labelStyle: React.CSSProperties = {
     fontFamily: 'var(--font-body)',
     fontSize: '0.65rem',
@@ -55,12 +57,12 @@ export const ContactInfo = React.memo(function ContactInfo() {
       <div>
         <span style={labelStyle}>Email</span>
         <a
-          href="mailto:ayushbansal946@gmail.com"
+          href={`mailto:${profile.email}`}
           style={linkStyle}
           onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0055FF'; }}
           onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0C0C0C'; }}
         >
-          ayushbansal946@gmail.com
+          {profile.email}
         </a>
       </div>
 
@@ -68,22 +70,22 @@ export const ContactInfo = React.memo(function ContactInfo() {
       <div>
         <span style={labelStyle}>Phone / WhatsApp</span>
         <a
-          href="https://wa.me/917500039393"
+          href={`https://wa.me/${profile.phone.replace(/[^0-9]/g, '')}`}
           target="_blank"
           rel="noopener noreferrer"
           style={linkStyle}
           onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0055FF'; }}
           onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0C0C0C'; }}
         >
-          +91 7500039393
+          {profile.phone}
         </a>
       </div>
 
       {/* Social Links */}
       <div style={{ display: 'flex', gap: '32px', paddingTop: '8px' }}>
         {[
-          { label: 'LinkedIn', href: 'https://linkedin.com/in/ayush946' },
-          { label: 'Behance',  href: 'https://behance.net/Ayush-bansal' },
+          { label: 'LinkedIn', href: profile.linkedin },
+          { label: 'Behance',  href: profile.behance },
         ].map(social => (
           <a
             key={social.label}

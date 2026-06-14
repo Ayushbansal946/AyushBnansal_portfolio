@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { collection, getDocs, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { LogOut, Save, RefreshCw, Database } from '../components/Icons';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fallbackProjects, fallbackExperiences, fallbackSkills, fallbackCertificates } from '../data/fallbackData';
+import { fallbackProjects, fallbackExperiences, fallbackSkills, fallbackCertificates, fallbackProfile } from '../data/fallbackData';
 
-type SectionType = 'projects' | 'experiences' | 'skills' | 'certificates';
+type SectionType = 'projects' | 'experiences' | 'skills' | 'certificates' | 'profile';
 
 function ImagePreview({ url }: { url: string }) {
   const [dimensions, setDimensions] = useState<{w: number, h: number} | null>(null);
@@ -62,14 +62,23 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const snap = await getDocs(collection(db, activeTab));
-      const items = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      // Sort items by num if it exists
-      items.sort((a: any, b: any) => {
-        if (a.num && b.num) return a.num.localeCompare(b.num);
-        return 0;
-      });
-      setData(items);
+      if (activeTab === 'profile') {
+        const snap = await getDoc(doc(db, 'settings', 'profile'));
+        if (snap.exists()) {
+          setData([snap.data()]);
+        } else {
+          setData([fallbackProfile]);
+        }
+      } else {
+        const snap = await getDocs(collection(db, activeTab));
+        const items = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        // Sort items by num if it exists
+        items.sort((a: any, b: any) => {
+          if (a.num && b.num) return a.num.localeCompare(b.num);
+          return 0;
+        });
+        setData(items);
+      }
     } catch (err: any) {
       console.error("Error fetching data:", err);
       setMessage("Error fetching data: " + err.message);
@@ -85,10 +94,15 @@ export default function AdminDashboard() {
     setSaving(true);
     setMessage('');
     try {
-      for (const item of data) {
-        if (!item.id) continue;
-        const ref = doc(db, activeTab, item.id);
-        await setDoc(ref, item);
+      if (activeTab === 'profile') {
+        await setDoc(doc(db, 'settings', 'profile'), data[0]);
+        localStorage.setItem('cache_profile_settings', JSON.stringify(data[0]));
+      } else {
+        for (const item of data) {
+          if (!item.id) continue;
+          const ref = doc(db, activeTab, item.id);
+          await setDoc(ref, item);
+        }
       }
       setMessage('✅ Successfully saved changes to ' + activeTab);
       setTimeout(() => setMessage(''), 3000);
@@ -244,7 +258,7 @@ export default function AdminDashboard() {
         </div>
         
         <nav style={{ flex: 1, padding: '0 16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {(['projects', 'experiences', 'skills', 'certificates'] as SectionType[]).map((tab) => (
+          {(['profile', 'projects', 'experiences', 'skills', 'certificates'] as SectionType[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -421,7 +435,7 @@ export default function AdminDashboard() {
                 >
                   <div style={{ marginBottom: '24px', borderBottom: '1px solid var(--border)', paddingBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', letterSpacing: '0.05em', color: 'var(--white)' }}>
-                      {activeTab.toUpperCase().slice(0, activeTab.length - 1)} {index + 1}{item.title || item.role || item.category ? ` - ${item.title || item.role || item.category}` : ''}
+                      {activeTab === 'profile' ? 'GLOBAL PROFILE SETTINGS' : `${activeTab.toUpperCase().slice(0, activeTab.length - 1)} ${index + 1}${item.title || item.role || item.category ? ` - ${item.title || item.role || item.category}` : ''}`}
                     </h3>
                     {data.length > 1 && (
                       <button 
@@ -523,34 +537,36 @@ export default function AdminDashboard() {
                   </div>
                 </div>
               ))}
-              <button
-                onClick={handleAddNew}
-                style={{
-                  width: '100%',
-                  padding: '24px',
-                  background: 'rgba(255,255,255,0.02)',
-                  border: '2px dashed var(--border)',
-                  borderRadius: '16px',
-                  color: 'var(--text-light)',
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '1.2rem',
-                  letterSpacing: '0.1em',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--accent)';
-                  e.currentTarget.style.color = 'var(--white)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border)';
-                  e.currentTarget.style.color = 'var(--text-light)';
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
-                }}
-              >
-                + ADD NEW {activeTab.toUpperCase().slice(0, activeTab.length - 1)}
-              </button>
+              {activeTab !== 'profile' && (
+                <button
+                  onClick={handleAddNew}
+                  style={{
+                    width: '100%',
+                    padding: '24px',
+                    background: 'rgba(255,255,255,0.02)',
+                    border: '2px dashed var(--border)',
+                    borderRadius: '16px',
+                    color: 'var(--text-light)',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '1.2rem',
+                    letterSpacing: '0.1em',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--accent)';
+                    e.currentTarget.style.color = 'var(--white)';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--border)';
+                    e.currentTarget.style.color = 'var(--text-light)';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                  }}
+                >
+                  + ADD NEW {activeTab.toUpperCase().slice(0, activeTab.length - 1)}
+                </button>
+              )}
             </motion.div>
           )}
         </div>
