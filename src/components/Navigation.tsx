@@ -32,12 +32,7 @@ const navLinks = [
   { label: 'CONTACT',    href: '#contact' },
 ];
 
-// ── Social link definitions ──
-const socialLinks = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/ayush946' },
-  { label: 'Behance',  href: 'https://behance.net/Ayush-bansal' },
-  { label: 'Email',    href: 'mailto:ayushbansal946@gmail.com' },
-];
+
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
