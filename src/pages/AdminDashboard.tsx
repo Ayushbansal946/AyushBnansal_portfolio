@@ -161,11 +161,11 @@ export default function AdminDashboard() {
     if (activeTab === 'projects') {
       newItem = { ...newItem, num: `0${data.length + 1}`, title: '', subtitle: '', description: '', images: ['', '', ''], tags: [], type: '', tools: '', details: [] };
     } else if (activeTab === 'experiences') {
-      newItem = { ...newItem, role: '', company: '', duration: '', description: '', skills: [] };
+      newItem = { ...newItem, num: `0${data.length + 1}`, role: '', company: '', date: '', bullets: [], tools: [] };
     } else if (activeTab === 'skills') {
-      newItem = { ...newItem, category: '', items: [] };
+      newItem = { ...newItem, title: '', skills: [] };
     } else if (activeTab === 'certificates') {
-      newItem = { ...newItem, title: '', issuer: '', fileUrl: '', type: 'image' };
+      newItem = { ...newItem, title: '', issuer: '', fileUrl: '', logoUrl: '', type: 'image' };
     }
     setData([...data, newItem]);
   };
@@ -408,9 +408,9 @@ export default function AdminDashboard() {
                     {(() => {
                       const fieldOrder: Record<string, string[]> = {
                         profile: ['resumeUrl', 'phone', 'email', 'linkedin', 'behance'],
-                        projects: ['num', 'title', 'subtitle', 'type', 'tools', 'description', 'tags', 'images'],
-                        experiences: ['num', 'role', 'company', 'duration', 'description', 'skills'],
-                        skills: ['category', 'items'],
+                        projects: ['num', 'title', 'subtitle', 'type', 'tools', 'description', 'details', 'tags', 'images'],
+                        experiences: ['num', 'role', 'company', 'date', 'bullets', 'tools'],
+                        skills: ['title', 'skills'],
                         certificates: ['title', 'issuer', 'type', 'logoUrl', 'fileUrl']
                       };
                       const keysToRender = fieldOrder[activeTab] || Object.keys(item).filter(k => k !== 'id');
