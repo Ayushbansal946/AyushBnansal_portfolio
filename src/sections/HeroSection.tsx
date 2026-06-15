@@ -50,11 +50,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-4 lg:mb-8"
           >
             <p
               className="font-body font-bold uppercase tracking-widest"
-              style={{ fontSize: '11px', letterSpacing: '0.3em', color: 'var(--text-muted)' }}
+              style={{ fontSize: '11px', letterSpacing: '0.3em', color: 'var(--text-muted)',marginTop: '5.5rem' }}
             >
               [PORTFOLIO]
             </p>
@@ -76,6 +75,7 @@ export default function HeroSection() {
                 textTransform: 'uppercase',
                 marginLeft: '-0.04em',
                 color: 'var(--text-main)',
+                marginTop: '-0.25em',
               }}
             >
               AYUSH<sup className="text-xl md:text-3xl ml-2 font-bold" style={{ color: 'var(--accent)' }}>®</sup>
