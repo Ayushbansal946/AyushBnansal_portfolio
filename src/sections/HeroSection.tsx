@@ -50,6 +50,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            // className="mb-4 lg:mb-8"
           >
             <p
               className="font-body font-bold uppercase tracking-widest"
