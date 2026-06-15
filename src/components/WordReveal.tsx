@@ -41,13 +41,11 @@ const Word = ({ children, progress, range }: WordProps) => {
   const opacity = useTransform(progress, range, [0.15, 1]);
 
   return (
-    <span style={{ marginRight: '0.25em', display: 'inline-block' }}>
+    <span className="mr-[0.25em] inline-block">
       <motion.span
+        className="font-body text-text-main inline"
         style={{
           opacity,
-          fontFamily: 'var(--font-body)',
-          color: 'var(--text-main)',
-          display: 'inline',
         }}
       >
         {children}
@@ -63,14 +61,9 @@ export const WordReveal = React.memo(function WordReveal({ text, progress }: Wor
 
   return (
     <div
+      className="font-body leading-[1.25] tracking-[-0.01em] font-normal flex flex-wrap"
       style={{
-        fontFamily: 'var(--font-body)',
         fontSize: 'clamp(1.2rem, 3vw, 2rem)',
-        lineHeight: 1.25,
-        letterSpacing: '-0.01em',
-        fontWeight: 400,
-        display: 'flex',
-        flexWrap: 'wrap',
       }}
     >
       {words.map((word, i) => {

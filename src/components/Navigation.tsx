@@ -75,13 +75,7 @@ export default function Navigation() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // ── Shared link hover helpers ──
-  const onHoverAccent = (e: React.MouseEvent<HTMLElement>) =>
-    (e.currentTarget.style.color = 'var(--accent)');
-  const onLeaveMain = (e: React.MouseEvent<HTMLElement>) =>
-    (e.currentTarget.style.color = 'var(--text-main)');
-  const onLeaveLight = (e: React.MouseEvent<HTMLElement>) =>
-    (e.currentTarget.style.color = 'var(--text-light)');
+
 
   return (
     <>
@@ -89,84 +83,34 @@ export default function Navigation() {
           FIXED TOP BAR
           ══════════════════════════════════════ */}
       <nav
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          zIndex: 50,
-          transition: 'background-color 0.35s, border-color 0.35s, backdrop-filter 0.35s',
-          backgroundColor: scrolled ? 'rgba(10,10,10,0.9)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(14px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
-          borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
-        }}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-[350ms] ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-[14px] border-b border-border' : 'bg-transparent border-b border-transparent'}`}
       >
         <div
-          style={{
-            width: '100%',
-            padding: '0 5vw',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            height: '72px',
-            position: 'relative',
-          }}
+          className="w-full px-[5vw] flex items-center justify-between h-[72px] relative"
         >
           {/* Logo */}
           <a
             href="#hero"
             onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: '1.55rem',
-              color: 'var(--text-main)',
-              letterSpacing: '0.05em',
-              transition: 'color 0.2s',
-              lineHeight: 1,
-              textDecoration: 'none',
-            }}
-            onMouseEnter={onHoverAccent}
-            onMouseLeave={onLeaveMain}
+            className="font-heading text-[1.55rem] text-text-main tracking-[0.05em] transition-colors duration-200 leading-none no-underline hover:text-accent"
           >
             AYUSH
           </a>
 
           {/* Availability badge — center, desktop only */}
           <div
-            style={{
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              pointerEvents: 'none',
-            }}
-            className="hidden md:flex"
+            className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-[10px] pointer-events-none"
           >
             {/* Pulsing green dot */}
             <span
+              className="w-2 h-2 rounded-full bg-[#10b981] block shrink-0"
               style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: '#10b981',
-                display: 'block',
-                flexShrink: 0,
                 boxShadow: '0 0 0 0 rgba(16,185,129,0.4)',
                 animation: 'availablePulse 2s ease-in-out infinite',
               }}
             />
             <span
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '0.62rem',
-                fontWeight: 700,
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-                color: 'var(--text-muted)',
-              }}
+              className="font-body text-[0.62rem] font-bold tracking-[0.22em] uppercase text-text-muted"
             >
               Available for Project
             </span>
@@ -177,22 +121,7 @@ export default function Navigation() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '44px',
-              height: '44px',
-              color: 'var(--text-main)',
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'color 0.2s',
-              position: 'relative',
-              zIndex: 60,
-            }}
-            onMouseEnter={onHoverAccent}
-            onMouseLeave={onLeaveMain}
+            className="flex items-center justify-center w-[44px] h-[44px] text-text-main bg-transparent border-none cursor-pointer transition-colors duration-200 relative z-[60] hover:text-accent"
           >
             {isOpen ? <X size={26} strokeWidth={2} /> : <Menu size={26} strokeWidth={2} />}
           </button>
@@ -212,14 +141,7 @@ export default function Navigation() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsOpen(false)}
-              style={{
-                position: 'fixed',
-                inset: 0,
-                zIndex: 40,
-                backgroundColor: 'rgba(0,0,0,0.65)',
-                backdropFilter: 'blur(4px)',
-                WebkitBackdropFilter: 'blur(4px)',
-              }}
+              className="fixed inset-0 z-40 bg-black/65 backdrop-blur-sm"
             />
 
             {/* Slide-out panel from right */}
@@ -231,50 +153,16 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{
-                position: 'fixed',
-                top: 0,
-                right: 0,
-                zIndex: 55,
-                width: '100%',
-                maxWidth: '480px',
-                height: '100%',
-                backgroundColor: 'var(--bg)',
-                borderLeft: '1px solid var(--border)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
+              className="fixed top-0 right-0 z-[55] w-full max-w-[480px] h-full bg-bg border-l border-border flex flex-col justify-between"
             >
               {/* ── Panel Header: Close button ── */}
               <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  padding: '20px 24px',
-                  borderBottom: '1px solid var(--border)',
-                }}
+                className="flex justify-end py-5 px-6 border-b border-border"
               >
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label="Close menu"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    color: 'var(--text-muted)',
-                    background: 'transparent',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.7rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-main)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
+                  className="flex items-center gap-2 text-text-muted bg-transparent border-none cursor-pointer font-body text-[0.7rem] font-bold tracking-[0.15em] uppercase transition-colors duration-200 hover:text-text-main"
                 >
                   <X size={18} strokeWidth={2} />
                   Close
@@ -283,13 +171,7 @@ export default function Navigation() {
 
               {/* ── Nav links ── */}
               <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  flex: 1,
-                  padding: '24px 48px',
-                }}
+                className="flex flex-col justify-center flex-1 py-6 px-12"
               >
                 {navLinks.map((link, i) => (
                   <motion.a
@@ -300,20 +182,10 @@ export default function Navigation() {
                     exit={{ opacity: 0, x: 40 }}
                     transition={{ delay: 0.06 + i * 0.07, duration: 0.32 }}
                     onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                    className="font-heading text-text-main block py-3 border-b border-border transition-colors duration-200 leading-none tracking-[-0.01em] no-underline hover:text-accent"
                     style={{
-                      fontFamily: 'var(--font-heading)',
                       fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-                      color: 'var(--text-main)',
-                      display: 'block',
-                      padding: '12px 0',
-                      borderBottom: '1px solid var(--border)',
-                      transition: 'color 0.2s',
-                      lineHeight: 1,
-                      letterSpacing: '-0.01em',
-                      textDecoration: 'none',
                     }}
-                    onMouseEnter={onHoverAccent}
-                    onMouseLeave={onLeaveMain}
                   >
                     {link.label}
                   </motion.a>
@@ -326,38 +198,21 @@ export default function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 16 }}
                 transition={{ delay: 0.38, duration: 0.32 }}
-                style={{ padding: '28px 48px', borderTop: '1px solid var(--border)' }}
+                className="py-7 px-12 border-t border-border"
               >
                 <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.62rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.22em',
-                    textTransform: 'uppercase',
-                    color: 'var(--text-muted)',
-                    marginBottom: '14px',
-                  }}
+                  className="font-body text-[0.62rem] font-bold tracking-[0.22em] uppercase text-text-muted mb-[14px]"
                 >
                   Connect
                 </p>
-                <div style={{ display: 'flex', gap: '28px' }}>
+                <div className="flex gap-7">
                   {socialLinks.map(social => (
                     <a
                       key={social.label}
                       href={social.href}
                       target={social.href.startsWith('http') ? '_blank' : undefined}
                       rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      style={{
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '0.82rem',
-                        fontWeight: 600,
-                        color: 'var(--text-light)',
-                        transition: 'color 0.2s',
-                        textDecoration: 'none',
-                      }}
-                      onMouseEnter={onHoverAccent}
-                      onMouseLeave={onLeaveLight}
+                      className="font-body text-[0.82rem] font-semibold text-text-light transition-colors duration-200 no-underline hover:text-accent"
                     >
                       {social.label}
                     </a>

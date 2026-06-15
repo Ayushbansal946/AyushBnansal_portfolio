@@ -20,20 +20,14 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative"
-      style={{
-        backgroundColor: 'var(--surface)',
-        paddingTop: '120px',
-        paddingBottom: '120px',
-      }}
+      className="relative bg-surface pt-[120px] pb-[120px]"
     >
-      <div style={{ padding: '0 5vw' }}>
+      <div className="px-[5vw]">
         
         {/* Section Header */}
-        <div style={{ marginBottom: '80px' }}>
+        <div className="mb-[80px]">
           <p
-            className="font-body font-bold uppercase"
-            style={{ fontSize: '11px', letterSpacing: '0.3em', color: 'var(--text-muted)', marginBottom: '8px' }}
+            className="font-body font-bold uppercase text-[11px] tracking-[0.3em] text-text-muted mb-2"
           >
             [EXPERTISE]
           </p>
@@ -41,14 +35,9 @@ export default function SkillsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            className="font-heading uppercase"
+            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-[64px]"
             style={{
-              fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(2rem, 5vw, 4rem)',
-              color: 'var(--text-main)',
-              lineHeight: 1,
-              letterSpacing: '-0.01em',
-              marginBottom: '64px',
             }}
           >
             SKILLS & TOOLS
@@ -66,45 +55,16 @@ export default function SkillsSection() {
               transition={{ delay: index * 0.1 }}
             >
               <h3 
-                className="font-body font-bold"
-                style={{
-                  fontSize: '1.25rem',
-                  color: 'var(--text-main)',
-                  marginBottom: '24px',
-                  letterSpacing: '0.05em',
-                  textTransform: 'uppercase',
-                  borderBottom: '1px solid var(--border)',
-                  paddingBottom: '12px'
-                }}
+                className="font-body font-bold text-xl text-text-main mb-6 tracking-[0.05em] uppercase border-b border-border pb-3"
               >
                 {category.title}
               </h3>
               
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, i) => (
                   <span 
                     key={i}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '30px',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      fontSize: '0.85rem',
-                      fontFamily: 'var(--font-body)',
-                      fontWeight: 500,
-                      color: index === 0 ? 'var(--accent)' : 'var(--text-light)', // Highlight AI skills in accent color
-                      backgroundColor: 'rgba(255,255,255,0.02)',
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--text-main)';
-                      e.currentTarget.style.color = 'var(--bg)';
-                      e.currentTarget.style.borderColor = 'var(--text-main)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.02)';
-                      e.currentTarget.style.color = index === 0 ? 'var(--accent)' : 'var(--text-light)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
-                    }}
+                    className={`px-4 py-2 rounded-[30px] border border-white/10 text-[0.85rem] font-body font-medium transition-all duration-200 bg-white/5 hover:bg-text-main hover:text-bg hover:border-text-main ${index === 0 ? 'text-accent' : 'text-text-light'}`}
                   >
                     {skill}
                   </span>
@@ -119,7 +79,7 @@ export default function SkillsSection() {
       {/* ── Shape Divider: Fluid Wave ── */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0 pointer-events-none">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[40px] md:h-[80px]">
-          <path d="M0,60 C150,0 350,0 600,60 C850,120 1050,120 1200,60 L1200,120 L0,120 Z" fill="var(--bg)" />
+          <path d="M0,60 C150,0 350,0 600,60 C850,120 1050,120 1200,60 L1200,120 L0,120 Z" className="fill-bg" />
         </svg>
       </div>
     </section>

@@ -54,22 +54,10 @@ export default function Button({
   const Component = as as any;
 
   // Variant-specific styles
-  const variantStyles: Record<string, React.CSSProperties> = {
-    primary: {
-      backgroundColor: '#0055FF',
-      color: '#fff',
-      border: '2px solid #0055FF',
-    },
-    secondary: {
-      backgroundColor: '#fff',
-      color: '#0055FF',
-      border: '2px solid #fff',
-    },
-    outline: {
-      backgroundColor: 'transparent',
-      color: 'var(--text-main)',
-      border: '2px solid rgba(255,255,255,0.2)',
-    },
+  const variantStyles: Record<string, string> = {
+    primary: "bg-[#0055FF] text-white border-2 border-[#0055FF]",
+    secondary: "bg-white text-[#0055FF] border-2 border-white",
+    outline: "bg-transparent text-text-main border-2 border-white/20",
   };
 
   return (
@@ -79,32 +67,16 @@ export default function Button({
       rel={rel}
       onClick={onClick}
       type={as === 'button' ? type : undefined}
-      className={`group ${className}`}
+      className={`group inline-flex items-center justify-center gap-3 py-[14px] px-7 font-body text-xs font-bold uppercase tracking-[0.12em] cursor-pointer overflow-hidden relative no-underline transition-colors duration-[400ms] ${variantStyles[variant]} ${className}`}
       style={{
         borderRadius: GOLDEN_RADIUS,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '12px',
-        padding: '14px 28px',
-        fontFamily: 'var(--font-body)',
-        fontSize: '0.75rem',
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: '0.12em',
-        cursor: 'pointer',
-        overflow: 'hidden',
-        position: 'relative',
-        textDecoration: 'none',
-        transition: 'background-color 0.4s, color 0.4s, border-color 0.4s',
-        ...variantStyles[variant],
         ...style,
       }}
     >
-      <span style={{ position: 'relative', zIndex: 1 }}>{children}</span>
+      <span className="relative z-1">{children}</span>
 
       {/* Animated Arrow: exits to top-right, re-enters from bottom-left */}
-      <div style={{ position: 'relative', overflow: 'hidden', width: '18px', height: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="relative overflow-hidden w-[18px] h-[18px] flex items-center justify-center">
         <ArrowUpRight
           size={18}
           className="absolute transform transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"

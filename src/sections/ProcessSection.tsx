@@ -62,49 +62,21 @@ export default function ProcessSection() {
   return (
     <section
       id="process"
-      ref={targetRef}
-      style={{ position: 'relative', height: '300vh', backgroundColor: 'var(--bg)' }}
+      className="relative h-[300vh] bg-bg"
     >
       {/* Sticky viewport */}
-      <div
-        style={{
-          position: 'sticky',
-          top: 0,
-          height: '100vh',
-          paddingTop: '80px', // Push content below the fixed navbar
-          paddingBottom: '40px', // Provide bottom breathing room
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <div className="sticky top-0 h-[100vh] pt-[80px] pb-[40px] overflow-hidden flex flex-col">
         {/* ── Top Area: Section label + Heading ── */}
-        <div
-          style={{
-            padding: '32px 5vw 0',
-            width: '100%',
-            display: 'flex',
-            alignItems: 'baseline',
-            justifyContent: 'space-between',
-            flexShrink: 0,
-          }}
-        >
+        <div className="w-full flex items-baseline justify-between shrink-0 px-[5vw] pt-8">
           {/* Left: label + heading */}
           <div>
-            <p
-              className="font-body font-bold uppercase"
-              style={{ fontSize: '11px', letterSpacing: '0.3em', color: 'var(--text-muted)', marginBottom: '8px' }}
-            >
+            <p className="font-body font-bold uppercase text-[11px] tracking-[0.3em] text-text-muted mb-2">
               [PROCESS]
             </p>
             <h2
-              className="font-heading uppercase"
+              className="font-heading uppercase text-text-main leading-none tracking-[-0.01em]"
               style={{
-                fontFamily: 'var(--font-heading)',
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
-                color: 'var(--text-main)',
-                lineHeight: 1,
-                letterSpacing: '-0.01em',
               }}
             >
               HOW I WORK
@@ -113,53 +85,29 @@ export default function ProcessSection() {
 
           {/* Right: step counter */}
           <motion.p
-            className="font-body font-bold hidden md:block"
-            style={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              color: 'var(--text-muted)',
-              fontVariantNumeric: 'tabular-nums',
-            }}
+            className="font-body font-bold hidden md:block text-xs tracking-[0.15em] text-text-muted tabular-nums"
           >
             SCROLL TO EXPLORE →
           </motion.p>
         </div>
 
         {/* ── Horizontal Steps Track ── */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+        <div className="flex-1 flex items-center overflow-hidden">
           <motion.div
-            className="flex"
-            style={{
-              x,
-              width: '400vw',
-              height: '100%',
-              alignItems: 'center',
-            }}
+            className="flex items-center w-[400vw] h-full"
+            style={{ x }}
           >
             {steps.map((step, index) => (
               <div
                 key={index}
-                style={{
-                  width: '100vw',
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '0 5vw',
-                  borderLeft: index > 0 ? '1px solid var(--border)' : 'none',
-                  flexShrink: 0,
-                }}
+                className={`w-[100vw] h-full flex items-center px-[5vw] shrink-0 ${index > 0 ? 'border-l border-border' : ''}`}
               >
-                <div style={{ maxWidth: '680px', width: '100%' }}>
+                <div className="w-full max-w-[680px]">
                   {/* Step number */}
                   <span
-                    className="font-body font-bold"
+                    className="font-body font-bold text-accent block mb-8 tracking-[0.2em] uppercase"
                     style={{
                       fontSize: 'clamp(0.75rem, 1.2vw, 1rem)',
-                      color: 'var(--accent)',
-                      display: 'block',
-                      marginBottom: '32px',
-                      letterSpacing: '0.2em',
-                      textTransform: 'uppercase',
                     }}
                   >
                     {step.num}
@@ -167,15 +115,9 @@ export default function ProcessSection() {
 
                   {/* Step title — big editorial heading */}
                   <h3
-                    className="font-heading uppercase"
+                    className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-10 whitespace-pre-line"
                     style={{
-                      fontFamily: 'var(--font-heading)',
                       fontSize: 'clamp(1.8rem, 4.3vw, 4.6rem)',
-                      color: 'var(--text-main)',
-                      lineHeight: 0.9,
-                      letterSpacing: '-0.02em',
-                      marginBottom: '40px',
-                      whiteSpace: 'pre-line',
                     }}
                   >
                     {step.title}
@@ -183,12 +125,9 @@ export default function ProcessSection() {
 
                   {/* Step description */}
                   <p
-                    className="font-body leading-relaxed"
+                    className="font-body text-text-muted max-w-[500px] leading-[1.6]"
                     style={{
                       fontSize: 'clamp(1rem, 1.4vw, 1.35rem)',
-                      color: 'var(--text-muted)',
-                      maxWidth: '500px',
-                      lineHeight: 1.6,
                     }}
                   >
                     {step.description}
@@ -200,34 +139,15 @@ export default function ProcessSection() {
         </div>
 
         {/* ── Bottom progress bar ── */}
-        <div
-          style={{
-            padding: '0 5vw 28px',
-            width: '100%',
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center',
-            flexShrink: 0,
-          }}
-        >
+        <div className="w-full flex items-center gap-2 shrink-0 px-[5vw] pb-7">
           {steps.map((_, i) => (
             <div
               key={i}
-              style={{
-                flex: 1,
-                height: '2px',
-                backgroundColor: 'var(--border)',
-                borderRadius: '2px',
-                overflow: 'hidden',
-                position: 'relative',
-              }}
+              className="flex-1 h-[2px] bg-border rounded-[2px] overflow-hidden relative"
             >
               <motion.div
+                className="absolute inset-0 bg-accent origin-left"
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  backgroundColor: 'var(--accent)',
-                  transformOrigin: 'left',
                   scaleX: useTransform(
                     scrollYProgress,
                     [i / 4, (i + 1) / 4],
@@ -243,7 +163,7 @@ export default function ProcessSection() {
       {/* ── Shape Divider: Arrow ── */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0 pointer-events-none">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[40px] md:h-[80px]">
-          <path d="M0,120 L0,0 L600,120 L1200,0 L1200,120 Z" fill="var(--surface)" />
+          <path d="M0,120 L0,0 L600,120 L1200,0 L1200,120 Z" className="fill-surface" />
         </svg>
       </div>
     </section>

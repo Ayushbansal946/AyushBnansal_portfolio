@@ -24,26 +24,15 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      style={{
-        backgroundColor: '#F2F2F2',
-        position: 'relative',
-        overflow: 'hidden',
-        color: '#0C0C0C',
-        borderRadius: '3rem 3rem 0 0',
-      }}
+      className="relative overflow-hidden bg-[#F2F2F2] text-[#0C0C0C] rounded-t-[3rem]"
     >
       {/* ── Main Content: Left + Right columns ── */}
       <div
-        className="flex flex-col md:flex-row"
-        style={{
-          padding: '96px 5vw',
-          gap: '80px',
-        }}
+        className="flex flex-col md:flex-row px-[5vw] py-[96px] gap-[80px]"
       >
         {/* LEFT COLUMN: Heading + ContactInfo */}
         <div
-          className="flex-1 flex flex-col justify-between"
-          style={{ minWidth: 0 }}
+          className="flex-1 flex flex-col justify-between min-w-0"
         >
           <div>
             <motion.h2
@@ -51,14 +40,9 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="font-heading uppercase"
+              className="font-heading uppercase leading-none tracking-[-0.01em] text-[#0C0C0C] mb-[48px]"
               style={{
-                fontFamily: 'var(--font-heading)',
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
-                lineHeight: 1,
-                letterSpacing: '-0.01em',
-                color: '#0C0C0C',
-                marginBottom: '48px',
               }}
             >
               LET'S WORK<br />TOGETHER
@@ -69,8 +53,7 @@ export default function ContactSection() {
 
         {/* RIGHT COLUMN: Contact Form */}
         <div
-          className="flex-1 w-full"
-          style={{ maxWidth: '520px' }}
+          className="flex-1 w-full max-w-[520px]"
         >
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -84,23 +67,17 @@ export default function ContactSection() {
       </div>
 
       {/* ── Footer Bar ── */}
-      <div style={{ borderTop: '1px solid rgba(0,0,0,0.12)' }}>
+      <div className="border-t border-[rgba(0,0,0,0.12)]">
         <div
-          className="flex flex-col sm:flex-row items-center justify-between"
-          style={{
-            padding: '28px 5vw',
-            gap: '12px',
-          }}
+          className="flex flex-col sm:flex-row items-center justify-between px-[5vw] py-[28px] gap-3"
         >
           <p
-            className="font-body font-bold uppercase"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.15em', color: 'rgba(0,0,0,0.5)' }}
+            className="font-body font-bold uppercase text-[0.7rem] tracking-[0.15em] text-black/50"
           >
             Designed by Ayush Bansal
           </p>
           <p
-            className="font-body font-bold uppercase"
-            style={{ fontSize: '0.7rem', letterSpacing: '0.15em', color: 'rgba(0,0,0,0.5)' }}
+            className="font-body font-bold uppercase text-[0.7rem] tracking-[0.15em] text-black/50"
           >
             © 2025 All Rights Reserved
           </p>

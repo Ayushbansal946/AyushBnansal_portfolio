@@ -25,16 +25,7 @@ export const CertificateCard = React.memo(function CertificateCard({
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={onClick}
-      className="group relative overflow-hidden flex flex-col justify-between"
-      style={{
-        padding: '32px',
-        background: 'var(--surface)',
-        border: '1px solid var(--border)',
-        borderRadius: '20px',
-        transition: 'all 0.3s ease-out',
-        cursor: 'pointer',
-        minHeight: '260px'
-      }}
+      className="group relative overflow-hidden flex flex-col justify-between p-8 bg-surface border border-border rounded-[20px] transition-all duration-300 ease-out cursor-pointer min-h-[260px]"
       whileHover={{
         y: -6,
         borderColor: 'var(--accent)',
@@ -47,40 +38,21 @@ export const CertificateCard = React.memo(function CertificateCard({
       <div>
         {/* Certificate Logo Block */}
         <div
-          style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '12px',
-            background: 'var(--bg)',
-            border: '1px solid var(--border)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '24px',
-            transition: 'all 0.3s',
-            overflow: 'hidden',
-            padding: issuer.includes('IBM') ? '2px' : '8px',
-          }}
-          className="group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(0,85,255,0.3)]"
+          className={`w-12 h-12 rounded-xl bg-bg border border-border flex items-center justify-center mb-6 transition-all duration-300 overflow-hidden group-hover:border-[var(--accent)] group-hover:shadow-[0_0_20px_rgba(0,85,255,0.3)] ${issuer.includes('IBM') ? 'p-[2px]' : 'p-2'}`}
         >
           <img 
             src={logoUrl} 
             alt={`${issuer} logo`} 
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            className="w-full h-full object-contain"
             loading="lazy"
           />
         </div>
 
         {/* Certificate Title */}
         <h3
-          className="font-body font-bold group-hover:text-[var(--accent)]"
+          className="font-body font-bold text-text-main leading-[1.4] mb-2 transition-colors duration-300 tracking-[-0.01em] group-hover:text-[var(--accent)]"
           style={{
             fontSize: 'clamp(1.1rem, 1.5vw, 1.25rem)',
-            lineHeight: 1.4,
-            color: 'var(--text-main)',
-            marginBottom: '8px',
-            transition: 'color 0.3s',
-            letterSpacing: '-0.01em'
           }}
         >
           {title}
@@ -88,8 +60,7 @@ export const CertificateCard = React.memo(function CertificateCard({
 
         {/* Issuer */}
         <p
-          className="font-body font-medium"
-          style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}
+          className="font-body font-medium text-[0.9rem] text-text-muted"
         >
           {issuer}
         </p>
@@ -97,7 +68,7 @@ export const CertificateCard = React.memo(function CertificateCard({
 
       {/* View Credential Hint */}
       <div className="mt-8 flex items-center gap-2 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-        <span style={{ color: 'var(--accent)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <span className="text-accent text-[0.85rem] font-semibold uppercase tracking-[0.05em]">
           View Credential
         </span>
         <ExternalLink size={14} color="var(--accent)" />

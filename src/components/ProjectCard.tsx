@@ -35,37 +35,31 @@ export const ProjectCard = React.memo(function ProjectCard({
     >
       <ProjectCarousel images={images} tags={tags} />
 
-      <div className="flex items-start justify-between gap-4" style={{ marginTop: '20px' }}>
+      <div className="flex items-start justify-between gap-4 mt-5">
         <div className="flex-1 w-full">
           
-          <div className="flex items-baseline justify-between w-full" style={{ marginBottom: '16px' }}>
+          <div className="flex items-baseline justify-between w-full mb-4">
             <div className="flex items-baseline gap-4">
               <span
-                className="font-heading font-bold select-none"
+                className="font-heading font-bold select-none text-accent leading-none"
                 style={{
-                  fontFamily: 'var(--font-heading)',
                   fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-                  color: 'var(--accent)',
-                  lineHeight: 1,
                 }}
               >
                 {num}.
               </span>
               <div>
                 <h3 
-                  className="font-heading uppercase"
+                  className="font-heading uppercase leading-[0.95] text-text-main"
                   style={{
                     fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
-                    lineHeight: 0.95,
-                    color: 'var(--text-main)',
                   }}
                 >
                   {title}
                 </h3>
                 {subtitle && (
                   <p
-                    className="font-body"
-                    style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}
+                    className="font-body text-[0.85rem] text-text-muted mt-1"
                   >
                     {subtitle}
                   </p>
@@ -83,8 +77,8 @@ export const ProjectCard = React.memo(function ProjectCard({
           </div>
 
           <p
-            className="font-body leading-relaxed"
-            style={{ fontSize: 'clamp(1rem, 1.2vw, 1.15rem)', color: 'var(--text-light)' }}
+            className="font-body leading-relaxed text-text-light"
+            style={{ fontSize: 'clamp(1rem, 1.2vw, 1.15rem)' }}
           >
             {description}
           </p>
@@ -98,15 +92,14 @@ export const ProjectCard = React.memo(function ProjectCard({
                 transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                 className="overflow-hidden"
               >
-                <div style={{ paddingTop: '32px', marginTop: '8px', borderTop: '1px solid var(--border)' }}>
+                <div className="pt-8 mt-2 border-t border-border">
                   
                   {/* Tags */}
-                  <div className="flex flex-wrap" style={{ gap: '0.75rem', marginBottom: '2.5rem', marginTop: '8px' }}>
+                  <div className="flex flex-wrap gap-3 mb-10 mt-2">
                     {tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="rounded-full border border-white/10 bg-white/5 font-body font-semibold uppercase"
-                        style={{ display: 'inline-block', padding: '0.5rem 1rem', color: 'var(--text-light)', fontSize: '0.75rem', letterSpacing: '0.15em' }}
+                        className="inline-block px-4 py-2 rounded-full border border-white/10 bg-white/5 font-body font-semibold uppercase text-text-light text-xs tracking-[0.15em]"
                       >
                         {tag}
                       </span>
@@ -114,25 +107,25 @@ export const ProjectCard = React.memo(function ProjectCard({
                   </div>
 
                   {/* Project Meta Info */}
-                  <div className="grid grid-cols-2 font-body rounded-2xl bg-white/[0.02] border border-white/5" style={{ gap: '2rem', marginBottom: '2.5rem', padding: '1.5rem' }}>
+                  <div className="grid grid-cols-2 gap-8 mb-10 p-6 font-body rounded-2xl bg-white/2 border border-white/5">
                     <div>
-                      <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '8px' }}>Project Type</p>
-                      <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: 500 }}>{type}</p>
+                      <p className="text-[0.7rem] text-text-muted uppercase tracking-[0.15em] mb-2">Project Type</p>
+                      <p className="text-[1.05rem] text-text-main font-medium">{type}</p>
                     </div>
                     <div>
-                      <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '8px' }}>Tools Used</p>
-                      <p style={{ fontSize: '1.05rem', color: 'var(--text-main)', fontWeight: 500 }}>{tools}</p>
+                      <p className="text-[0.7rem] text-text-muted uppercase tracking-[0.15em] mb-2">Tools Used</p>
+                      <p className="text-[1.05rem] text-text-main font-medium">{tools}</p>
                     </div>
                   </div>
 
                   {/* Bullet Points */}
-                  <div style={{ paddingLeft: '0.5rem' }}>
-                    <p style={{ fontSize: '0.75rem', color: 'var(--text-main)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '20px' }}>Key Details</p>
-                    <ul className="flex flex-col" style={{ gap: '1.5rem' }}>
+                  <div className="pl-2">
+                    <p className="text-xs text-text-main font-semibold uppercase tracking-[0.1em] mb-5">Key Details</p>
+                    <ul className="flex flex-col gap-6">
                       {details.map((detail, i) => (
-                        <li key={i} className="flex items-start" style={{ gap: '1.25rem' }}>
-                          <span style={{ color: 'var(--accent)', fontSize: '1.5rem', lineHeight: '1.2rem' }}>•</span>
-                          <span style={{ fontFamily: 'var(--font-body)', fontSize: '1.05rem', color: 'var(--text-light)', lineHeight: 1.8 }}>
+                        <li key={i} className="flex items-start gap-5">
+                          <span className="text-accent text-2xl leading-[1.2rem]">•</span>
+                          <span className="font-body text-[1.05rem] text-text-light leading-[1.8]">
                             {detail}
                           </span>
                         </li>

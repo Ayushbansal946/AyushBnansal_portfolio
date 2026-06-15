@@ -105,71 +105,30 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div
-        style={{
-          background: 'rgba(0,0,0,0.05)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(0,0,0,0.1)',
-          borderRadius: '20px',
-          padding: '48px 32px',
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '24px',
-        }}
+        className="bg-black/5 backdrop-blur-[12px] border border-black/10 rounded-[20px] py-12 px-8 text-center flex flex-col items-center gap-6"
       >
         {/* Animated checkmark */}
         <div
-          style={{
-            width: '64px',
-            height: '64px',
-            borderRadius: '50%',
-            backgroundColor: '#0c0c0c',
-            color: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-            animation: 'bounce 1s infinite',
-          }}
+          className="w-16 h-16 rounded-full bg-[#0c0c0c] text-white flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.15)] animate-bounce"
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
         <h3
+          className="font-heading text-[#0c0c0c] uppercase tracking-[0.05em]"
           style={{
-            fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-            color: '#0c0c0c',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em',
           }}
         >
           Message Sent!
         </h3>
-        <p style={{ fontFamily: 'var(--font-body)', color: 'rgba(0,0,0,0.7)', maxWidth: '320px', lineHeight: 1.6 }}>
+        <p className="font-body text-black/70 max-w-[320px] leading-[1.6]">
           Thank you for reaching out. I'll get back to you shortly!
         </p>
         <button
           onClick={() => setStatus('idle')}
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-            color: '#0c0c0c',
-            textDecoration: 'underline',
-            textUnderlineOffset: '4px',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            opacity: 0.8,
-            transition: 'opacity 0.2s',
-          }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-          onMouseLeave={e => (e.currentTarget.style.opacity = '0.8')}
+          className="font-body text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#0c0c0c] underline underline-offset-4 bg-transparent border-none cursor-pointer opacity-80 transition-opacity duration-200 hover:opacity-100"
         >
           Send Another Message
         </button>
@@ -178,39 +137,19 @@ export function ContactForm() {
   }
 
   // Shared input/textarea style
-  const inputStyle: React.CSSProperties = {
-    display: 'block',
-    width: '100%',
-    background: 'transparent',
-    border: 'none',
-    borderBottom: '2px solid rgba(0,0,0,0.3)',
-    color: '#0c0c0c',
-    fontSize: '1.1rem',
-    fontFamily: 'var(--font-body)',
-    padding: '16px 0 12px',
-    outline: 'none',
-    transition: 'border-color 0.2s',
-  };
+  const inputClassName = "block w-full bg-transparent border-none border-b-2 border-black/30 text-[#0c0c0c] text-[1.1rem] font-body pt-4 pb-3 outline-none transition-colors duration-200 focus:border-black/100";
 
-  const labelStyle: React.CSSProperties = {
-    display: 'block',
-    fontFamily: 'var(--font-body)',
-    fontSize: '0.85rem',
-    fontWeight: 600,
-    color: 'rgba(0,0,0,0.6)',
-    marginBottom: '4px',
-    letterSpacing: '0.02em',
-  };
+  const labelClassName = "block font-body text-[0.85rem] font-semibold text-black/60 mb-1 tracking-[0.02em]";
 
   return (
     <form
       ref={formRef}
-      style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}
+      className="flex flex-col gap-9"
       onSubmit={handleSubmit}
     >
       {/* Name */}
       <div>
-        <label htmlFor="contact-name" style={labelStyle}>Your Name</label>
+        <label htmlFor="contact-name" className={labelClassName}>Your Name</label>
         <input
           type="text"
           id="contact-name"
@@ -220,15 +159,13 @@ export function ContactForm() {
           placeholder="Ayush Bansal"
           required
           disabled={status === 'loading'}
-          style={inputStyle}
-          onFocus={e => (e.currentTarget.style.borderBottomColor = '#000')}
-          onBlur={e => (e.currentTarget.style.borderBottomColor = 'rgba(0,0,0,0.3)')}
+          className={inputClassName}
         />
       </div>
 
       {/* Email */}
       <div>
-        <label htmlFor="contact-email" style={labelStyle}>Email Address</label>
+        <label htmlFor="contact-email" className={labelClassName}>Email Address</label>
         <input
           type="email"
           id="contact-email"
@@ -238,15 +175,13 @@ export function ContactForm() {
           placeholder="hello@example.com"
           required
           disabled={status === 'loading'}
-          style={inputStyle}
-          onFocus={e => (e.currentTarget.style.borderBottomColor = '#000')}
-          onBlur={e => (e.currentTarget.style.borderBottomColor = 'rgba(0,0,0,0.3)')}
+          className={inputClassName}
         />
       </div>
 
       {/* Message */}
       <div>
-        <label htmlFor="contact-message" style={labelStyle}>Tell me about your project</label>
+        <label htmlFor="contact-message" className={labelClassName}>Tell me about your project</label>
         <textarea
           id="contact-message"
           name="message"
@@ -256,34 +191,21 @@ export function ContactForm() {
           rows={4}
           required
           disabled={status === 'loading'}
-          style={{ ...inputStyle, resize: 'none', lineHeight: 1.6 }}
-          onFocus={e => (e.currentTarget.style.borderBottomColor = '#000')}
-          onBlur={e => (e.currentTarget.style.borderBottomColor = 'rgba(0,0,0,0.3)')}
+          className={`${inputClassName} resize-none leading-[1.6]`}
         />
       </div>
 
       {/* Error state */}
       {status === 'error' && (
         <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.75rem',
-            fontWeight: 700,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#fff',
-            background: '#E53E3E',
-            border: 'none',
-            borderRadius: '8px',
-            padding: '10px 16px',
-          }}
+          className="font-body text-xs font-bold tracking-[0.08em] uppercase text-white bg-[#E53E3E] border-none rounded-lg py-2.5 px-4"
         >
           {errorMessage}
         </p>
       )}
 
       {/* Submit */}
-      <div style={{ paddingTop: '8px' }}>
+      <div className="pt-2">
         <Button type="submit" variant="primary" style={{ width: '100%', backgroundColor: '#0c0c0c', borderColor: '#0c0c0c', color: '#fff' }}>
           {status === 'loading' ? 'Sending…' : 'Send Message'}
         </Button>

@@ -22,14 +22,9 @@ export default function CertificatesSection() {
   return (
     <section
       id="certifications"
-      className="relative"
-      style={{
-        backgroundColor: 'var(--surface)',
-        paddingTop: '120px',
-        paddingBottom: '120px',
-      }}
+      className="relative bg-surface pt-[120px] pb-[120px]"
     >
-      <div style={{ padding: '0 5vw' }}>
+      <div className="px-[5vw]">
 
         {/* ── Section Header ── */}
         <motion.div
@@ -37,24 +32,18 @@ export default function CertificatesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ marginBottom: '64px' }}
+          className="mb-[64px]"
         >
           <h2
-            className="font-heading uppercase"
+            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-4"
             style={{
-              fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(2rem, 5vw, 4rem)',
-              color: 'var(--text-main)',
-              lineHeight: 1,
-              letterSpacing: '-0.01em',
-              marginBottom: '16px',
             }}
           >
             CERTIFICATIONS
           </h2>
           <p
-            className="font-body"
-            style={{ fontSize: '1.05rem', color: 'var(--text-muted)' }}
+            className="font-body text-[1.05rem] text-text-muted"
           >
             Professional development &amp; continuous learning
           </p>
@@ -62,8 +51,7 @@ export default function CertificatesSection() {
 
         {/* ── Certificate Grid ── */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '32px' }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[32px]"
         >
           {certs.map((cert, index) => (
             <CertificateCard
@@ -93,8 +81,7 @@ export default function CertificatesSection() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-5xl bg-surface border border-border rounded-2xl overflow-hidden shadow-2xl"
-              style={{ height: '85vh' }}
+              className="relative w-full max-w-5xl bg-surface border border-border rounded-2xl overflow-hidden shadow-2xl h-[85vh]"
               onClick={(e) => e.stopPropagation()} // Prevent clicks inside modal from closing it
             >
               
@@ -143,7 +130,7 @@ export default function CertificatesSection() {
       {/* ── Shape Divider: Slant ── */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0 pointer-events-none">
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[40px] md:h-[80px]">
-          <path d="M1200 120L0 120 0 0 1200 120z" fill="var(--bg)" />
+          <path d="M1200 120L0 120 0 0 1200 120z" className="fill-bg" />
         </svg>
       </div>
     </section>

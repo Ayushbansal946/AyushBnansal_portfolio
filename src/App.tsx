@@ -19,7 +19,6 @@ function PortfolioHome() {
   return (
     <div
       className="bg-bg min-h-screen text-text-main selection:bg-accent selection:text-white"
-      style={{ backgroundColor: 'var(--bg)', color: 'var(--text-main)' }}
     >
       <Navigation />
       <main className="flex flex-col">

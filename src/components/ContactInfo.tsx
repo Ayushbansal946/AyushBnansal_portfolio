@@ -16,38 +16,17 @@ import { useProfileSettings } from '../hooks/useProfileSettings';
 
 export const ContactInfo = React.memo(function ContactInfo() {
   const profile = useProfileSettings();
-  const labelStyle: React.CSSProperties = {
-    fontFamily: 'var(--font-body)',
-    fontSize: '0.65rem',
-    letterSpacing: '0.2em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-    color: 'rgba(0,0,0,0.4)',
-    marginBottom: '6px',
-    display: 'block',
-  };
-
-  const linkStyle: React.CSSProperties = {
-    fontFamily: 'var(--font-body)',
-    fontSize: 'clamp(1rem, 1.5vw, 1.4rem)',
-    color: '#0C0C0C',
-    display: 'block',
-    width: 'fit-content',
-    transition: 'color 0.2s, transform 0.2s',
-    textDecoration: 'none',
-  };
+  const labelClassName = "font-body text-[0.65rem] tracking-[0.2em] uppercase font-bold text-black/40 mb-[6px] block";
+  
+  const linkClassName = "font-body text-[#0C0C0C] block w-fit transition-all duration-200 no-underline hover:text-[#0055FF]";
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+    <div className="flex flex-col gap-8">
       {/* Tagline */}
       <p
+        className="font-body text-black/80 max-w-[420px] leading-[1.5] font-medium"
         style={{
-          fontFamily: 'var(--font-body)',
           fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-          color: 'rgba(0,0,0,0.8)',
-          maxWidth: '420px',
-          lineHeight: 1.5,
-          fontWeight: 500,
         }}
       >
         Have a project in mind? Fill out the form or reach out directly.
@@ -55,12 +34,11 @@ export const ContactInfo = React.memo(function ContactInfo() {
 
       {/* Email */}
       <div>
-        <span style={labelStyle}>Email</span>
+        <span className={labelClassName}>Email</span>
         <a
           href={`mailto:${profile.email}`}
-          style={linkStyle}
-          onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0055FF'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0C0C0C'; }}
+          className={linkClassName}
+          style={{ fontSize: 'clamp(1rem, 1.5vw, 1.4rem)' }}
         >
           {profile.email}
         </a>
@@ -68,21 +46,20 @@ export const ContactInfo = React.memo(function ContactInfo() {
 
       {/* Phone */}
       <div>
-        <span style={labelStyle}>Phone / WhatsApp</span>
+        <span className={labelClassName}>Phone / WhatsApp</span>
         <a
           href={`https://wa.me/${profile.phone.replace(/[^0-9]/g, '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          style={linkStyle}
-          onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0055FF'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0C0C0C'; }}
+          className={linkClassName}
+          style={{ fontSize: 'clamp(1rem, 1.5vw, 1.4rem)' }}
         >
           {profile.phone}
         </a>
       </div>
 
       {/* Social Links */}
-      <div style={{ display: 'flex', gap: '32px', paddingTop: '8px' }}>
+      <div className="flex gap-8 pt-2">
         {[
           { label: 'LinkedIn', href: profile.linkedin },
           { label: 'Behance',  href: profile.behance },
@@ -92,18 +69,7 @@ export const ContactInfo = React.memo(function ContactInfo() {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.8rem',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'rgba(0,0,0,0.8)',
-              textDecoration: 'none',
-              transition: 'color 0.2s',
-            }}
-            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#0055FF'; }}
-            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(0,0,0,0.8)'; }}
+            className="font-body text-[0.8rem] font-bold tracking-[0.1em] uppercase text-black/80 no-underline transition-colors duration-200 hover:text-[#0055FF]"
           >
             {social.label}
           </a>
