@@ -478,7 +478,7 @@ export default function AdminDashboard() {
                       return (
                         <div key={key}>
                           <label htmlFor={`input-${index}-${key}`} style={labelStyle}>
-                            {key} {isArray && !isNewlineArray && <span style={{ color: 'var(--accent)' }}>(Comma separated)</span>}
+                            {key === 'details' ? 'Key Details' : key} {isArray && !isNewlineArray && <span style={{ color: 'var(--accent)' }}>(Comma separated)</span>}
                             {isNewlineArray && <span style={{ color: 'var(--accent)' }}>(One item per line)</span>}
                           </label>
                           

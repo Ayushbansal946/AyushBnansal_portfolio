@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export function useSectionData<T>(collectionName: string, fallbackData: T[]): T[] {
@@ -19,38 +19,29 @@ export function useSectionData<T>(collectionName: string, fallbackData: T[]): T[
   });
 
   useEffect(() => {
-    let isMounted = true;
+    const unsubscribe = onSnapshot(collection(db, collectionName), (snap) => {
+      if (!snap.empty) {
+        let fetched = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as any[];
+        
+        // Sort items by num if they have it
+        fetched.sort((a, b) => {
+           if (a.num && b.num) return a.num.localeCompare(b.num);
+           return 0;
+        });
 
-    const fetchData = async () => {
-      try {
-        const snap = await getDocs(collection(db, collectionName));
-        if (!snap.empty && isMounted) {
-          let fetched = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as any[];
-          
-          // Sort items by num if they have it
-          fetched.sort((a, b) => {
-             if (a.num && b.num) return a.num.localeCompare(b.num);
-             return 0;
-          });
-
-          setData(fetched);
-          localStorage.setItem(`cache_${collectionName}`, JSON.stringify(fetched));
-        } else if (snap.empty && isMounted && data.length === 0) {
-           setData(fallbackData);
-        }
-      } catch (error) {
-        console.error(`Error fetching ${collectionName} from Firestore, using fallback.`, error);
-        if (isMounted && data.length === 0) {
-          setData(fallbackData);
-        }
+        setData(fetched);
+        localStorage.setItem(`cache_${collectionName}`, JSON.stringify(fetched));
+      } else if (snap.empty && data.length === 0) {
+         setData(fallbackData);
       }
-    };
+    }, (error) => {
+      console.error(`Error fetching ${collectionName} from Firestore, using fallback.`, error);
+      if (data.length === 0) {
+        setData(fallbackData);
+      }
+    });
 
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
+    return () => unsubscribe();
   }, [collectionName]);
 
   return data;

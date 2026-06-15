@@ -66,6 +66,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="z-20 relative"
+            style={{ marginTop: 'clamp(2rem, 5vh, 5rem)' }}
           >
             <h1
               className="text-text-main tracking-tighter leading-[1]"
