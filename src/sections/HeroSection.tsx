@@ -81,28 +81,24 @@ export default function HeroSection() {
               AYUSH<sup className="text-xl md:text-3xl ml-2 font-bold" style={{ color: 'var(--accent)' }}>®</sup>
             </h1>
           </motion.div>
-        </div>
 
-        {/* Desktop Tagline — top right */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="hidden lg:block z-20 text-right mt-8 lg:mt-0"
-        >
-          <p
-            className="leading-none font-medium tracking-tight"
+          {/* Tagline — subheading under name */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="font-body font-medium tracking-tight leading-snug"
             style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(1.2rem, 2vw, 2.2rem)',
+              fontSize: 'clamp(1.1rem, 2vw, 1.8rem)',
               color: 'var(--text-muted)',
+              marginTop: 'clamp(0.75rem, 1.5vh, 1.5rem)',
             }}
           >
-            Beyond<br />
-            Visuals.<br />
-            <span style={{ color: 'var(--text-main)' }}>Built with<br />Vision.</span>
-          </p>
-        </motion.div>
+            Beyond Visuals. <span style={{ color: 'var(--text-main)' }}>Built with Vision.</span>
+          </motion.p>
+        </div>
+
+
       </div>
 
       {/* ── Center: Profile Image (sits behind name) ── */}
@@ -181,26 +177,7 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Mobile tagline — bottom right */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="lg:hidden text-right pl-4"
-        >
-            <p
-              className="leading-none font-medium tracking-tight"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(1.2rem, 3vw, 2rem)',
-                color: 'var(--text-muted)',
-              }}
-            >
-              Beyond<br />
-              Visuals.<br />
-              <span style={{ color: 'var(--text-main)' }}>Built with<br />Vision.</span>
-            </p>
-          </motion.div>
+
         </div>
 
       {/* ── Shape Divider: Soft Arch ── */}
