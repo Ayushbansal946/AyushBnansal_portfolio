@@ -40,28 +40,66 @@ export default function HeroSection() {
         {/* Subtle noise texture */}
       </div>
       
-      {/* ── Hero Text Block: Label + Name + Tagline ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative z-20 flex flex-col mt-[150px]"
-      >
-        {/* Section label */}
-        <p className="font-body font-bold uppercase text-[11px] tracking-[0.3em] text-[var(--text-muted)] mb-4 lg:mb-6">
-          [PORTFOLIO]
-        </p>
+      {/* ── Top Row: Name + Tagline ── */}
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center relative z-20">
+        
+        {/* Left Side — Split lines for layout */}
+        <div className="flex flex-col relative w-full lg:w-auto">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-4 lg:mb-8"
+          >
+            <p
+              className="font-body font-bold uppercase tracking-widest"
+              style={{ fontSize: '11px', letterSpacing: '0.3em', color: 'var(--text-muted)' }}
+            >
+              [PORTFOLIO]
+            </p>
+          </motion.div>
 
-        {/* Oversized AYUSH wordmark */}
-        <h1 className="font-[var(--font-heading)] uppercase tracking-tighter leading-none text-[var(--text-main)] -ml-[0.04em]" style={{ fontSize: 'clamp(3rem, 10vw, 8.5rem)' }}>
-          AYUSH<sup className="text-xl md:text-3xl ml-2 font-bold text-[var(--accent)]">®</sup>
-        </h1>
+          {/* Oversized AYUSH wordmark */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="z-20 relative"
+            style={{ marginTop: 'clamp(2rem, 5vh, 5rem)' }}
+          >
+            <h1
+              className="text-text-main tracking-tighter leading-[1]"
+              style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: 'clamp(3rem, 10vw, 8.5rem)',
+                textTransform: 'uppercase',
+                marginLeft: '-0.04em',
+                color: 'var(--text-main)',
+              }}
+            >
+              AYUSH<sup className="text-xl md:text-3xl ml-2 font-bold" style={{ color: 'var(--accent)' }}>®</sup>
+            </h1>
+          </motion.div>
 
-        {/* Tagline — subheading under name */}
-        <p className="font-body font-medium tracking-tight leading-snug text-[var(--text-muted)] mt-3 lg:mt-4" style={{ fontSize: 'clamp(1.1rem, 2vw, 1.8rem)' }}>
-          Beyond Visuals. <span className="text-[var(--text-main)]">Built with Vision.</span>
-        </p>
-      </motion.div>
+          {/* Tagline — subheading under name */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="font-body font-medium tracking-tight leading-snug"
+            style={{
+              fontSize: 'clamp(1.1rem, 2vw, 1.8rem)',
+              color: 'var(--text-muted)',
+              marginTop: 'clamp(0.75rem, 1.5vh, 1.5rem)',
+            }}
+          >
+            Beyond Visuals. <span style={{ color: 'var(--text-main)' }}>Built with Vision.</span>
+          </motion.p>
+        </div>
+
+
+      </div>
 
       {/* ── Center: Profile Image (sits behind name) ── */}
       <motion.div
