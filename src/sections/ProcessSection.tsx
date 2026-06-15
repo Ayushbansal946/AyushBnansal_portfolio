@@ -62,6 +62,7 @@ export default function ProcessSection() {
   return (
     <section
       id="process"
+      ref={targetRef}
       className="relative h-[300vh] bg-bg"
     >
       {/* Sticky viewport */}
