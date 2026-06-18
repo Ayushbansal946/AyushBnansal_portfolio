@@ -102,3 +102,25 @@ sup {
 }
 
 
+
+/* -- Fluid Typography Utilities --
+   These replace repetitive inline style={{ fontSize: 'clamp(...)' }}
+   across sections, keeping visuals identical but code cleaner.
+*/
+.text-fluid-heading    { font-size: clamp(2rem, 5vw, 4rem); }
+.text-fluid-hero       { font-size: clamp(3rem, 10vw, 8.5rem); }
+.text-fluid-step-title { font-size: clamp(1.8rem, 4.3vw, 4.6rem); }
+.text-fluid-step-num   { font-size: clamp(0.75rem, 1.2vw, 1rem); }
+.text-fluid-step-desc  { font-size: clamp(1rem, 1.4vw, 1.35rem); }
+.text-fluid-tagline    { font-size: clamp(1.1rem, 2vw, 1.8rem); }
+.text-fluid-bio        { font-size: clamp(0.85rem, 1.36vw, 1.08rem); }
+.text-fluid-proj-num   { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.text-fluid-proj-title { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+.text-fluid-proj-desc  { font-size: clamp(1rem, 1.2vw, 1.15rem); }
+
+/* -- Availability badge pulse animation -- */
+@keyframes availablePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+}

@@ -75,10 +75,7 @@ export default function ProcessSection() {
               [PROCESS]
             </p>
             <h2
-              className="font-heading uppercase text-text-main leading-none tracking-[-0.01em]"
-              style={{
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-              }}
+              className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] text-fluid-heading"
             >
               HOW I WORK
             </h2>
@@ -106,30 +103,21 @@ export default function ProcessSection() {
                 <div className="w-full max-w-[680px]">
                   {/* Step number */}
                   <span
-                    className="font-body font-bold text-accent block mb-8 tracking-[0.2em] uppercase"
-                    style={{
-                      fontSize: 'clamp(0.75rem, 1.2vw, 1rem)',
-                    }}
+                    className="font-body font-bold text-accent block mb-8 tracking-[0.2em] uppercase text-fluid-step-num"
                   >
                     {step.num}
                   </span>
 
                   {/* Step title — big editorial heading */}
                   <h3
-                    className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-10 whitespace-pre-line"
-                    style={{
-                      fontSize: 'clamp(1.8rem, 4.3vw, 4.6rem)',
-                    }}
+                    className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-10 whitespace-pre-line text-fluid-step-title"
                   >
                     {step.title}
                   </h3>
 
                   {/* Step description */}
                   <p
-                    className="font-body text-text-muted max-w-[500px] leading-[1.6]"
-                    style={{
-                      fontSize: 'clamp(1rem, 1.4vw, 1.35rem)',
-                    }}
+                    className="font-body text-text-muted max-w-[500px] leading-[1.6] text-fluid-step-desc"
                   >
                     {step.description}
                   </p>

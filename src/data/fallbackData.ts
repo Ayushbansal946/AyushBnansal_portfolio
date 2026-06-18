@@ -212,7 +212,7 @@ export const fallbackCertificates = [
 ];
 
 export const fallbackProfile = {
-  resumeUrl: '/Ayush_Bansal_UIUX_Resume.pdf',
+  resumeUrl: '/resume/Ayush_Bansal_Resume.pdf',
   phone: '+91 7500039393',
   email: 'ayushbansal946@gmail.com',
   linkedin: 'https://linkedin.com/in/ayush946',

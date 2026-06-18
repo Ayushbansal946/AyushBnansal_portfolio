@@ -28,10 +28,7 @@ export default function ExperienceSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-12"
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
-            }}
+            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-12 text-fluid-heading"
           >
             EXPERIENCE
           </motion.h2>

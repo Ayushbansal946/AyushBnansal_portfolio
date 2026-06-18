@@ -40,10 +40,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="font-heading uppercase leading-none tracking-[-0.01em] text-[#0C0C0C] mb-[48px]"
-              style={{
-                fontSize: 'clamp(2rem, 5vw, 4rem)',
-              }}
+              className="font-heading uppercase leading-none tracking-[-0.01em] text-[#0C0C0C] mb-[48px] text-fluid-heading"
             >
               LET'S WORK<br />TOGETHER
             </motion.h2>

@@ -35,10 +35,7 @@ export default function CertificatesSection() {
           className="mb-[64px]"
         >
           <h2
-            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-4"
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
-            }}
+            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-4 text-fluid-heading"
           >
             CERTIFICATIONS
           </h2>

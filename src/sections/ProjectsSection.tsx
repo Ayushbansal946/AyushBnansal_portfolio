@@ -18,10 +18,7 @@ export default function ProjectsSection() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-4"
-          style={{
-            fontSize: 'clamp(2rem, 5vw, 4rem)',
-          }}
+          className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-4 text-fluid-heading"
         >
           PORTFOLIO
         </motion.h2>

@@ -41,19 +41,13 @@ export const ProjectCard = React.memo(function ProjectCard({
           <div className="flex items-baseline justify-between w-full mb-4">
             <div className="flex items-baseline gap-4">
               <span
-                className="font-heading font-bold select-none text-accent leading-none"
-                style={{
-                  fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-                }}
+                className="font-heading font-bold select-none text-accent leading-none text-fluid-proj-num"
               >
                 {num}.
               </span>
               <div>
                 <h3 
-                  className="font-heading uppercase leading-[0.95] text-text-main"
-                  style={{
-                    fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
-                  }}
+                  className="font-heading uppercase leading-[0.95] text-text-main text-fluid-proj-title"
                 >
                   {title}
                 </h3>
@@ -77,8 +71,7 @@ export const ProjectCard = React.memo(function ProjectCard({
           </div>
 
           <p
-            className="font-body leading-relaxed text-text-light"
-            style={{ fontSize: 'clamp(1rem, 1.2vw, 1.15rem)' }}
+            className="font-body leading-relaxed text-text-light text-fluid-proj-desc"
           >
             {description}
           </p>

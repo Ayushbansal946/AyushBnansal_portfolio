@@ -56,14 +56,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="z-20 relative"
-            style={{ marginTop: 'clamp(2rem, 5vh, 5rem)' }}
+            className="z-20 relative mt-[clamp(2rem,5vh,5rem)]"
           >
             <h1
-              className="font-heading uppercase tracking-tighter leading-[1] text-text-main -ml-[0.04em] -mt-[0.25em]"
-              style={{
-                fontSize: 'clamp(3rem, 10vw, 8.5rem)',
-              }}
+              className="font-heading uppercase tracking-tighter leading-[1] text-text-main -ml-[0.04em] -mt-[0.25em] text-fluid-hero"
             >
               AYUSH<sup className="text-xl md:text-3xl ml-2 font-bold text-accent">®</sup>
             </h1>
@@ -74,11 +70,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-body font-medium tracking-tight leading-snug text-text-muted"
-            style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.8rem)',
-              marginTop: 'clamp(0.75rem, 1.5vh, 1.5rem)',
-            }}
+            className="font-body font-medium tracking-tight leading-snug text-text-muted text-fluid-tagline mt-[clamp(0.75rem,1.5vh,1.5rem)]"
           >
             Beyond Visuals. <span className="text-text-main">Built with Vision.</span>
           </motion.p>
@@ -123,10 +115,7 @@ export default function HeroSection() {
           className="max-w-2xl"
         >
           <p
-            className="font-body font-medium leading-[1.25] text-text-main tracking-[-0.01em]"
-            style={{
-              fontSize: 'clamp(0.85rem, 1.36vw, 1.08rem)',
-            }}
+            className="font-body font-medium leading-[1.25] text-text-main tracking-[-0.01em] text-fluid-bio"
           >
             I build brands, websites, and digital experiences{' '}
             <br className="hidden md:block" />
