@@ -92,15 +92,13 @@ export default function HeroSection() {
         transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-32 z-10 pointer-events-none mt-5"
       >
-        <div className="relative w-[85%] md:w-[55%] lg:w-[42%] aspect-[4/3] overflow-hidden rounded-xl">
-          {/* Gradient edges that blend the photo into the dark bg */}
-          <div
-            className="absolute inset-0 pointer-events-none z-10 rounded-xl"
-            style={{ 
-              background: 'linear-gradient(to top, var(--bg) 0%, transparent 40%), linear-gradient(to bottom, var(--bg) 0%, transparent 30%), linear-gradient(to right, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%)',
-              boxShadow: 'inset 0 0 80px 20px var(--bg)'
-            }}
-          />
+        <div 
+          className="relative w-[85%] md:w-[55%] lg:w-[42%] aspect-[4/3] overflow-hidden rounded-xl"
+          style={{
+            maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 100%)'
+          }}
+        >
           <img
             src="/images/profile_enhanced.png"
             alt="Ayush Bansal — UI/UX Designer"
