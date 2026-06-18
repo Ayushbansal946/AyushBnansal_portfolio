@@ -27,9 +27,15 @@ export default function HeroSection() {
       id="hero"
       className="relative w-full min-h-screen flex flex-col justify-between bg-bg overflow-hidden pt-[10vh] pb-[100px] px-[5vw]"
     >
-      {/* ── Background Noise & Gradients ── */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none mix-blend-overlay">
-        {/* Subtle noise texture */}
+      {/* ── Background Image & Overlay ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/images/hero_bg.png"
+          alt="Cityscape"
+          className="w-full h-full object-cover object-center opacity-50 mix-blend-luminosity"
+        />
+        {/* Gradient overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-bg/90 via-bg/60 to-bg pointer-events-none" />
       </div>
       
       {/* ── Top Row: Name + Tagline ── */}

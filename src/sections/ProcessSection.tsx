@@ -1,70 +1,98 @@
 /**
- * ProcessSection.tsx — How We Work (Horizontal Scroll Steps)
- * 
- * A sticky horizontal scroll experience driven by vertical page scroll.
- * The parent section is 300vh tall (reduced from 400vh) so the experience
- * feels appropriately paced — not overly long.
- * 
- * Technique:
- *   - Parent: `position: relative; height: 300vh`
- *   - Inner:  `position: sticky; top: 0; height: 100vh`
- *   - Framer Motion maps scrollYProgress [0→1] to translateX [0%→-75%]
- *     on a 400vw wide flex row (4 steps × 100vw each)
- * 
- * Sub-components: (none — fully self-contained)
- * 
- * Future Development:
- *   - Add progress indicator dots at the top showing current step (1/4, 2/4…)
- *   - Mobile: collapse into a vertical stacked list (no sticky scroll)
- *   - Add swipe support via Framer Motion drag="x" for touch devices
+ * ProcessSection.tsx — How We Work
+ *
+ * Desktop (lg+): Sticky scroll-driven horizontal animation (300vh tall section)
+ * Mobile (<lg):  Touch-swipe/drag horizontal carousel with CSS scroll-snap
  */
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-// ── Static step data ──
 const steps = [
-  {
-    num: 'STEP 01',
-    title: 'Discovery\nPhase',
-    description: 'Understanding your goals, pain points, audience, and what sets you apart.',
-  },
-  {
-    num: 'STEP 02',
-    title: 'Project\nKickoff',
-    description: 'Setting up projects, aligning on scope and milestones, and diving into the work.',
-  },
-  {
-    num: 'STEP 03',
-    title: 'Receive\n& Refine',
-    description: 'Sharing initial designs, gathering feedback, and fine-tuning together.',
-  },
-  {
-    num: 'STEP 04',
-    title: 'Continue\n& Grow',
-    description: 'Launching with confidence and supporting your next extraordinary moves.',
-  },
+  { num: 'STEP 01', title: 'Discovery\nPhase',   description: 'Understanding your goals, pain points, audience, and what sets you apart.' },
+  { num: 'STEP 02', title: 'Project\nKickoff',   description: 'Setting up projects, aligning on scope and milestones, and diving into the work.' },
+  { num: 'STEP 03', title: 'Receive\n& Refine',  description: 'Sharing initial designs, gathering feedback, and fine-tuning together.' },
+  { num: 'STEP 04', title: 'Continue\n& Grow',   description: 'Launching with confidence and supporting your next extraordinary moves.' },
 ];
 
 export default function ProcessSection() {
   const targetRef = useRef<HTMLDivElement>(null);
-
-  // Track vertical scroll progress of the 300vh container
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ['start start', 'end end'],
-  });
-
-  // Map scroll 0→1 to horizontal translation 0%→-75%
-  // (4 items each 100vw wide; to reach last, move left by 3×100vw = 75% of total 400vw)
+  const { scrollYProgress } = useScroll({ target: targetRef, offset: ['start start', 'end end'] });
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-75%']);
 
   return (
-    <section
-      id="process"
-      ref={targetRef}
-      className="relative h-[300vh] bg-bg"
-    >
+    <>
+      {/* ══════════════════════════════════════
+          MOBILE — horizontal drag/swipe carousel
+          Hidden on lg+ (desktop layout below)
+      ══════════════════════════════════════ */}
+      <section id="process" className="lg:hidden relative bg-bg pt-20 pb-16">
+
+        {/* Header */}
+        <div className="px-[5vw] mb-8">
+          <p className="font-body font-bold uppercase text-[11px] tracking-[0.3em] text-text-muted mb-2">[PROCESS]</p>
+          <div className="flex items-baseline justify-between">
+            <h2 className="font-heading uppercase text-text-main leading-none text-fluid-heading">HOW I WORK</h2>
+            <span className="font-body text-[10px] tracking-[0.15em] text-text-muted uppercase">← DRAG →</span>
+          </div>
+        </div>
+
+        {/* Native CSS snap horizontal scroll — swipe on touch, drag on desktop */}
+        <div
+          className="flex overflow-x-auto pb-6"
+          style={{
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
+          } as React.CSSProperties}
+        >
+          {steps.map((step, i) => (
+            <div
+              key={i}
+              className="shrink-0 h-[360px] flex items-center py-4"
+              style={{
+                width: '85vw',
+                scrollSnapAlign: 'start',
+                paddingLeft: '5vw',
+                paddingRight: '4vw',
+                borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
+              }}
+            >
+              <div>
+                <span className="font-body font-bold text-accent block mb-5 tracking-[0.2em] uppercase text-[0.78rem]">{step.num}</span>
+                <h3
+                  className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-5 whitespace-pre-line"
+                  style={{ fontSize: 'clamp(2.2rem, 7vw, 3rem)' }}
+                >{step.title}</h3>
+                <p className="font-body text-text-muted leading-[1.6] text-[0.95rem]">{step.description}</p>
+              </div>
+            </div>
+          ))}
+          <div className="shrink-0 w-[5vw]" />
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-2">
+          {steps.map((_, i) => <div key={i} className="w-6 h-[2px] bg-border rounded-full" />)}
+        </div>
+
+        {/* Shape divider */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[40px]">
+            <path d="M0,120 L0,0 L600,120 L1200,0 L1200,120 Z" className="fill-surface" />
+          </svg>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════
+          DESKTOP — sticky scroll-driven animation
+          Hidden on mobile, shown on lg+
+      ══════════════════════════════════════ */}
+      <section
+        id="process-desktop"
+        ref={targetRef}
+        className="hidden lg:block relative h-[300vh] bg-bg"
+      >
       {/* Sticky viewport */}
       <div className="sticky top-0 h-[100vh] pt-[80px] pb-[40px] overflow-hidden flex flex-col">
         {/* ── Top Area: Section label + Heading ── */}
@@ -155,6 +183,7 @@ export default function ProcessSection() {
           <path d="M0,120 L0,0 L600,120 L1200,0 L1200,120 Z" className="fill-surface" />
         </svg>
       </div>
-    </section>
+      </section>
+    </>
   );
 }
