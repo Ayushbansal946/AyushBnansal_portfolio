@@ -6,7 +6,7 @@
  */
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 const steps = [
   { num: 'STEP 01', title: 'Discovery\nPhase',   description: 'Understanding your goals, pain points, audience, and what sets you apart.' },
@@ -89,11 +89,14 @@ export default function ProcessSection() {
               key={i}
               className="w-6 h-[2px] bg-accent rounded-full"
               style={{
-                opacity: useTransform(
-                  scrollXProgress,
-                  [(i - 0.5) / 3, i / 3, (i + 0.5) / 3],
-                  [0.2, 1, 0.2]
-                ),
+                opacity: useTransform(scrollXProgress, (val) => {
+                  const target = i / 3;
+                  const dist = Math.abs(val - target);
+                  if (dist < 0.166) {
+                    return 1 - (dist / 0.166) * 0.8;
+                  }
+                  return 0.2;
+                }),
               }}
             />
           ))}
