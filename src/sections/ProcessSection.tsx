@@ -22,10 +22,14 @@ const techStackLogos = [
   { name: 'HTML5', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/html5.svg' },
   { name: 'CSS3', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/css.svg' },
   { name: 'JavaScript', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/javascript.svg' },
-  { name: 'ChatGPT', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/openai.svg' },
+  { name: 'TypeScript', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'React', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+  { name: 'TailwindCSS', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/tailwindcss.svg' },
+  { name: 'Firebase', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg' },
+  { name: 'Microsoft 365', src: 'https://cdn.simpleicons.org/microsoft365/white' },
+  { name: 'ChatGPT', src: 'https://cdn.simpleicons.org/openai/white' },
   { name: 'Gemini', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/gemini.svg' },
   { name: 'Claude', src: 'https://cdn.simpleicons.org/anthropic/white' },
-  { name: 'TailwindCSS', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/tailwindcss.svg' },
   { name: 'Antigravity', isText: true }
 ];
 // Double it for seamless loop
