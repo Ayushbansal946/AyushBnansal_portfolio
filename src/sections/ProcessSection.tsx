@@ -16,16 +16,16 @@ const steps = [
 ];
 
 const techStackLogos = [
-  { name: 'Figma', src: 'https://cdn.simpleicons.org/figma/white' },
-  { name: 'Adobe Express', src: 'https://cdn.simpleicons.org/adobe/white' },
-  { name: 'Canva', src: 'https://cdn.simpleicons.org/canva/white' },
-  { name: 'HTML5', src: 'https://cdn.simpleicons.org/html5/white' },
-  { name: 'CSS3', src: 'https://cdn.simpleicons.org/css3/white' },
-  { name: 'JavaScript', src: 'https://cdn.simpleicons.org/javascript/white' },
-  { name: 'ChatGPT', src: 'https://cdn.simpleicons.org/openai/white' },
-  { name: 'Gemini', src: 'https://cdn.simpleicons.org/googlegemini/white' },
+  { name: 'Figma', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/figma.svg' },
+  { name: 'Adobe Express', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/adobe.svg' },
+  { name: 'Canva', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/canva.svg' },
+  { name: 'HTML5', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/html5.svg' },
+  { name: 'CSS3', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/css.svg' },
+  { name: 'JavaScript', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/javascript.svg' },
+  { name: 'ChatGPT', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/openai.svg' },
+  { name: 'Gemini', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/gemini.svg' },
   { name: 'Claude', src: 'https://cdn.simpleicons.org/anthropic/white' },
-  { name: 'TailwindCSS', src: 'https://cdn.simpleicons.org/tailwindcss/white' },
+  { name: 'TailwindCSS', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/tailwindcss.svg' },
   { name: 'Antigravity', isText: true }
 ];
 // Double it for seamless loop
