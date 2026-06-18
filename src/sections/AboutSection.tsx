@@ -26,9 +26,9 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative pt-[120px] pb-[120px] bg-bg"
+      className="relative py-16 md:py-[100px] lg:py-[120px] bg-bg"
     >
-      <div className="w-full px-[5vw]">
+      <div className="w-full px-6 md:px-[5vw]">
 
         {/* ── Label ── */}
         <div className="mb-6">
@@ -44,7 +44,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-12 text-fluid-heading"
+          className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-8 lg:mb-12 text-fluid-heading"
         >
           ABOUT ME
         </motion.h2>

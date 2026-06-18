@@ -52,7 +52,7 @@ export default function ProcessSection() {
       <section id="process" className="lg:hidden relative bg-bg pt-20 pb-16">
 
         {/* Header */}
-        <div className="px-[5vw] mb-8">
+        <div className="px-6 md:px-[5vw] mb-8">
           <p className="font-body font-bold uppercase text-[11px] tracking-[0.3em] text-text-muted mb-2">[PROCESS]</p>
           <div className="flex items-baseline justify-between">
             <h2 className="font-heading uppercase text-text-main leading-none text-fluid-heading">HOW I WORK</h2>
@@ -63,10 +63,8 @@ export default function ProcessSection() {
         {/* Native CSS snap horizontal scroll — swipe on touch, drag on desktop */}
         <div
           ref={mobileContainerRef}
-          className="flex overflow-x-auto pb-6"
+          className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar px-6 md:px-[5vw] pb-8"
           style={{
-            scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch',
             scrollbarWidth: 'none',
           } as React.CSSProperties}
         >

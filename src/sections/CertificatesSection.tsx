@@ -22,9 +22,9 @@ export default function CertificatesSection() {
   return (
     <section
       id="certifications"
-      className="relative bg-surface pt-[120px] pb-[120px]"
+      className="relative bg-surface py-16 md:py-[100px] lg:py-[120px]"
     >
-      <div className="px-[5vw]">
+      <div className="px-6 md:px-[5vw]">
 
         {/* ── Section Header ── */}
         <motion.div
@@ -32,7 +32,7 @@ export default function CertificatesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-[64px]"
+          className="mb-10 lg:mb-[64px]"
         >
           <h2
             className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] mb-4 text-fluid-heading"
@@ -48,7 +48,7 @@ export default function CertificatesSection() {
 
         {/* ── Certificate Grid ── */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[32px]"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[32px]"
         >
           {certs.map((cert, index) => (
             <CertificateCard

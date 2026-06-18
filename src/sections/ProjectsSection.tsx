@@ -9,10 +9,10 @@ export default function ProjectsSection() {
   return (
     <section
       id="portfolio"
-      className="relative pt-[120px] pb-[120px] bg-surface"
+      className="relative py-16 md:py-[100px] lg:py-[120px] bg-surface"
     >
       <div
-        className="flex justify-between items-start px-[10vw] mb-[80px]"
+        className="flex justify-between items-start px-6 md:px-[5vw] lg:px-[10vw] mb-12 md:mb-[80px]"
       >
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
@@ -30,7 +30,7 @@ export default function ProjectsSection() {
       </div>
 
       <div
-        className="grid grid-cols-1 md:grid-cols-2 px-[10vw] gap-[80px]"
+        className="grid grid-cols-1 md:grid-cols-2 px-6 md:px-[5vw] lg:px-[10vw] gap-12 md:gap-[80px]"
       >
         {projects.map((project, index) => (
           <ProjectCard

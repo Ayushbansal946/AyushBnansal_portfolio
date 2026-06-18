@@ -28,7 +28,7 @@ export default function ContactSection() {
     >
       {/* ── Main Content: Left + Right columns ── */}
       <div
-        className="flex flex-col md:flex-row px-[5vw] py-[96px] gap-[80px]"
+        className="flex flex-col md:flex-row px-6 md:px-[5vw] py-16 md:py-[96px] gap-12 md:gap-[80px]"
       >
         {/* LEFT COLUMN: Heading + ContactInfo */}
         <div
@@ -40,7 +40,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="font-heading uppercase leading-none tracking-[-0.01em] text-[#0C0C0C] mb-[48px] text-fluid-heading"
+              className="font-heading uppercase leading-none tracking-[-0.01em] text-[#0C0C0C] mb-8 md:mb-[48px] text-fluid-heading"
             >
               LET'S WORK<br />TOGETHER
             </motion.h2>

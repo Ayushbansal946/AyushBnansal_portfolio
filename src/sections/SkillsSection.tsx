@@ -20,9 +20,9 @@ export default function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative bg-surface pt-[120px] pb-[120px]"
+      className="relative bg-surface py-16 md:py-[100px] lg:py-[120px]"
     >
-      <div className="px-[5vw]">
+      <div className="px-6 md:px-[5vw]">
         
         {/* Section Header */}
         <div className="mb-[80px]">
@@ -42,7 +42,7 @@ export default function SkillsSection() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 lg:gap-x-16 lg:gap-y-16">
           {skillCategories.map((category, index) => (
             <motion.div 
               key={index}

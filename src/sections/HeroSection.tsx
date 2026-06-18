@@ -25,7 +25,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex flex-col justify-between bg-bg overflow-hidden pt-[10vh] pb-[100px] px-[5vw]"
+      className="relative w-full min-h-screen flex flex-col justify-between bg-bg overflow-hidden pt-[15vh] pb-16 px-6 md:px-[5vw] lg:pt-[10vh] lg:pb-[100px]"
     >
       {/* ── Background Image & Overlay ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -51,7 +51,7 @@ export default function HeroSection() {
             // className="mb-4 lg:mb-8"
           >
             <p
-              className="font-body font-bold uppercase tracking-[0.3em] text-text-muted mt-[5.5rem] text-[11px]"
+              className="font-body font-bold uppercase tracking-[0.3em] text-text-muted mt-16 lg:mt-[5.5rem] text-[11px]"
             >
               [PORTFOLIO]
             </p>
@@ -95,12 +95,11 @@ export default function HeroSection() {
         <div className="relative w-[85%] md:w-[55%] lg:w-[42%] aspect-[4/3] overflow-hidden rounded-xl">
           {/* Gradient edges that blend the photo into the dark bg */}
           <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{ background: 'linear-gradient(to top, var(--bg) 0%, transparent 50%, transparent 100%)' }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{ background: 'linear-gradient(to right, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%)' }}
+            className="absolute inset-0 pointer-events-none z-10 rounded-xl"
+            style={{ 
+              background: 'linear-gradient(to top, var(--bg) 0%, transparent 40%), linear-gradient(to bottom, var(--bg) 0%, transparent 30%), linear-gradient(to right, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%)',
+              boxShadow: 'inset 0 0 80px 20px var(--bg)'
+            }}
           />
           <img
             src="/images/profile_enhanced.png"
@@ -130,7 +129,7 @@ export default function HeroSection() {
             </span>
           </p>
           
-          <div className="flex flex-wrap gap-4 mt-12">
+          <div className="flex flex-wrap gap-4 mt-8 lg:mt-12">
             <Button 
               as="a" 
               href={profile.resumeUrl} 

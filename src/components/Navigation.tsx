@@ -86,7 +86,7 @@ export default function Navigation() {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-[350ms] ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-[14px] border-b border-border' : 'bg-transparent border-b border-transparent'}`}
       >
         <div
-          className="w-full px-[5vw] flex items-center justify-between h-[72px] relative"
+          className="w-full px-6 md:px-[5vw] flex items-center justify-between h-[72px] relative"
         >
           {/* Logo */}
           <a
@@ -171,7 +171,7 @@ export default function Navigation() {
 
               {/* ── Nav links ── */}
               <div
-                className="flex flex-col justify-center flex-1 py-6 px-12"
+                className="flex flex-col justify-center flex-1 py-6 px-8 md:px-12"
               >
                 {navLinks.map((link, i) => (
                   <motion.a
