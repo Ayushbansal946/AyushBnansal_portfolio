@@ -83,7 +83,7 @@ export default function Navigation() {
           FIXED TOP BAR
           ══════════════════════════════════════ */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-[350ms] ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-[14px] border-b border-border' : 'bg-transparent border-b border-transparent'}`}
+        className={`fixed top-0 left-0 w-full z-[60] transition-all duration-[350ms] ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-[14px] border-b border-border' : 'bg-transparent border-b border-transparent'}`}
       >
         <div
           className="w-full px-6 md:px-[5vw] flex items-center justify-between h-[72px] relative"

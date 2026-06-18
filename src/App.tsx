@@ -18,10 +18,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 function PortfolioHome() {
   return (
     <div
-      className="bg-bg min-h-screen text-text-main selection:bg-accent selection:text-white"
+      className="bg-bg min-h-screen text-text-main selection:bg-accent selection:text-white relative"
     >
+      <div className="fixed inset-0 z-40 pointer-events-none opacity-[0.04] mix-blend-overlay bg-noise" />
       <Navigation />
-      <main className="flex flex-col">
+      <main className="flex flex-col relative z-10">
         <HeroSection />
         <ProjectsSection />
         <ProcessSection />

@@ -24,7 +24,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-[#F2F2F2] text-[#0C0C0C] rounded-t-[3rem]"
+      className="relative z-50 overflow-hidden bg-[#F2F2F2] text-[#0C0C0C] rounded-t-[3rem]"
     >
       {/* ── Main Content: Left + Right columns ── */}
       <div
