@@ -15,12 +15,21 @@ const steps = [
   { num: 'STEP 04', title: 'Continue\n& Grow',   description: 'Launching with confidence and supporting your next extraordinary moves.' },
 ];
 
-const techStack = [
-  "FIGMA", "ADOBE EXPRESS", "CANVA", "HTML", "CSS", "JAVASCRIPT",
-  "CHATGPT", "GEMINI", "CLAUDE", "ANTIGRAVITY", "TAILWINDCSS"
+const techStackLogos = [
+  { name: 'Figma', src: 'https://cdn.simpleicons.org/figma/white' },
+  { name: 'Adobe Express', src: 'https://cdn.simpleicons.org/adobe/white' },
+  { name: 'Canva', src: 'https://cdn.simpleicons.org/canva/white' },
+  { name: 'HTML5', src: 'https://cdn.simpleicons.org/html5/white' },
+  { name: 'CSS3', src: 'https://cdn.simpleicons.org/css3/white' },
+  { name: 'JavaScript', src: 'https://cdn.simpleicons.org/javascript/white' },
+  { name: 'ChatGPT', src: 'https://cdn.simpleicons.org/openai/white' },
+  { name: 'Gemini', src: 'https://cdn.simpleicons.org/googlegemini/white' },
+  { name: 'Claude', src: 'https://cdn.simpleicons.org/anthropic/white' },
+  { name: 'TailwindCSS', src: 'https://cdn.simpleicons.org/tailwindcss/white' },
+  { name: 'Antigravity', isText: true }
 ];
 // Double it for seamless loop
-const marqueeItems = [...techStack, ...techStack];
+const marqueeItems = [...techStackLogos, ...techStackLogos];
 
 export default function ProcessSection() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -209,7 +218,11 @@ export default function ProcessSection() {
         >
           {marqueeItems.map((item, idx) => (
             <div key={idx} className="flex items-center mx-6">
-              <span className="font-heading uppercase text-text-main text-xl tracking-widest">{item}</span>
+              {item.isText ? (
+                <span className="font-heading uppercase text-text-main text-xl tracking-widest">{item.name}</span>
+              ) : (
+                <img src={item.src} alt={item.name} className="h-7 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity" title={item.name} />
+              )}
               <span className="text-accent mx-6 text-xl">✦</span>
             </div>
           ))}
