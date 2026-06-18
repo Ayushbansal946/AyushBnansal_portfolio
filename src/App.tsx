@@ -14,6 +14,7 @@ import ContactSection from './sections/ContactSection';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
+import NotFound from './pages/NotFound';
 
 function PortfolioHome() {
   return (
@@ -51,6 +52,7 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
