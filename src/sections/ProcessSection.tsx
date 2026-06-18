@@ -15,10 +15,20 @@ const steps = [
   { num: 'STEP 04', title: 'Continue\n& Grow',   description: 'Launching with confidence and supporting your next extraordinary moves.' },
 ];
 
+const techStack = [
+  "FIGMA", "ADOBE EXPRESS", "CANVA", "HTML", "CSS", "JAVASCRIPT",
+  "CHATGPT", "GEMINI", "CLAUDE", "ANTIGRAVITY", "TAILWINDCSS"
+];
+// Double it for seamless loop
+const marqueeItems = [...techStack, ...techStack];
+
 export default function ProcessSection() {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: targetRef, offset: ['start start', 'end end'] });
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-75%']);
+
+  const mobileContainerRef = useRef<HTMLDivElement>(null);
+  const { scrollXProgress } = useScroll({ container: mobileContainerRef });
 
   return (
     <>
@@ -39,6 +49,7 @@ export default function ProcessSection() {
 
         {/* Native CSS snap horizontal scroll — swipe on touch, drag on desktop */}
         <div
+          ref={mobileContainerRef}
           className="flex overflow-x-auto pb-6"
           style={{
             scrollSnapType: 'x mandatory',
@@ -73,14 +84,19 @@ export default function ProcessSection() {
 
         {/* Dot indicators */}
         <div className="flex justify-center gap-2 mt-2">
-          {steps.map((_, i) => <div key={i} className="w-6 h-[2px] bg-border rounded-full" />)}
-        </div>
-
-        {/* Shape divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[40px]">
-            <path d="M0,120 L0,0 L600,120 L1200,0 L1200,120 Z" className="fill-surface" />
-          </svg>
+          {steps.map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-6 h-[2px] bg-accent rounded-full"
+              style={{
+                opacity: useTransform(
+                  scrollXProgress,
+                  [(i - 0.5) / 3, i / 3, (i + 0.5) / 3],
+                  [0.2, 1, 0.2]
+                ),
+              }}
+            />
+          ))}
         </div>
       </section>
 
@@ -177,13 +193,25 @@ export default function ProcessSection() {
         </div>
       </div>
 
-      {/* ── Shape Divider: Arrow ── */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-0 pointer-events-none">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[40px] md:h-[80px]">
-          <path d="M0,120 L0,0 L600,120 L1200,0 L1200,120 Z" className="fill-surface" />
-        </svg>
-      </div>
       </section>
+
+      {/* ══════════════════════════════════════
+          TECH STACK MARQUEE
+      ══════════════════════════════════════ */}
+      <div className="w-full bg-surface py-6 overflow-hidden relative flex items-center border-t border-border">
+        <motion.div
+          className="flex whitespace-nowrap"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+        >
+          {marqueeItems.map((item, idx) => (
+            <div key={idx} className="flex items-center mx-6">
+              <span className="font-heading uppercase text-text-main text-xl tracking-widest">{item}</span>
+              <span className="text-accent mx-6 text-xl">✦</span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </>
   );
 }
