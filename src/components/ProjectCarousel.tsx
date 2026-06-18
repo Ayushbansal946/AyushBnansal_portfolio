@@ -6,9 +6,10 @@ import React from 'react';
 interface ProjectCarouselProps {
   images: string[];
   tags?: string[];
+  projectName: string;
 }
 
-export const ProjectCarousel = React.memo(function ProjectCarousel({ images }: ProjectCarouselProps) {
+export const ProjectCarousel = React.memo(function ProjectCarousel({ images, projectName }: ProjectCarouselProps) {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -71,7 +72,7 @@ export const ProjectCarousel = React.memo(function ProjectCarousel({ images }: P
               <img 
                 src={img} 
                 className="w-full h-full object-cover transition-all duration-700 ease-in-out relative z-10" 
-                alt={`Project screenshot ${i + 1}`} 
+                alt={`${projectName} screenshot ${i + 1}`} 
                 loading="lazy"
               />
             )}

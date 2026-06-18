@@ -86,7 +86,7 @@ export default function CertificatesSection() {
               <div className="flex items-center justify-between p-4 border-b border-white/5 bg-black/20">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded bg-white p-1">
-                    <img src={selectedCert.logoUrl} alt="Logo" className="w-full h-full object-contain" />
+                    <img src={selectedCert.logoUrl} alt={`${selectedCert.issuer} logo`} className="w-full h-full object-contain" />
                   </div>
                   <div>
                     <h3 className="font-body font-bold text-white text-lg">{selectedCert.title}</h3>

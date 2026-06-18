@@ -33,7 +33,7 @@ export const ProjectCard = React.memo(function ProjectCard({
       className="flex flex-col h-full cursor-pointer group"
       onClick={() => setIsExpanded(!isExpanded)}
     >
-      <ProjectCarousel images={images} tags={tags} />
+      <ProjectCarousel images={images} tags={tags} projectName={title} />
 
       <div className="flex items-start justify-between gap-4 mt-5">
         <div className="flex-1 w-full">
