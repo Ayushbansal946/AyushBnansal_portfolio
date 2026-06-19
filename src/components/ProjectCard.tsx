@@ -30,8 +30,16 @@ export const ProjectCard = React.memo(function ProjectCard({
 
   return (
     <div 
-      className="flex flex-col h-full cursor-pointer group"
+      role="button"
+      tabIndex={0}
+      className="flex flex-col h-full cursor-pointer group outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-8 rounded-[4px]"
       onClick={() => setIsExpanded(!isExpanded)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsExpanded(!isExpanded);
+        }
+      }}
     >
       <ProjectCarousel images={images} tags={tags} projectName={title} />
 

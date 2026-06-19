@@ -101,6 +101,15 @@ sup {
   letter-spacing: 0;
 }
 
+/* ── Global Accessibility Focus States ── */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+input:focus-visible, textarea:focus-visible {
+  outline: none; /* Handled by internal border-b styles */
+}
 
 
 /* -- Fluid Typography Utilities --

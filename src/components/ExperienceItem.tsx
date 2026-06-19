@@ -24,14 +24,14 @@ export default function ExperienceItem({ number, role, company, date, tools = []
     <div className="border-b border-border py-10">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="group flex flex-col md:flex-row gap-4 md:gap-0 w-full items-center justify-between bg-transparent border-none cursor-pointer text-left"
+        className="group flex flex-col md:flex-row gap-4 md:gap-0 w-full items-center justify-between bg-transparent border-none cursor-pointer text-left outline-none rounded-sm"
       >
         <div className="flex items-center gap-8">
           <span className="font-body font-bold text-xs text-text-muted tracking-[0.1em] transition-colors duration-200">
             {number}
           </span>
           <h3
-            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] transition-colors duration-200"
+            className="font-heading uppercase text-text-main leading-none tracking-[-0.01em] transition-colors duration-200 group-hover:text-accent"
             style={{
               fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
             }}
