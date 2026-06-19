@@ -38,7 +38,13 @@ const marqueeItems = [...techStackLogos, ...techStackLogos];
 export default function ProcessSection() {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: targetRef, offset: ['start start', 'end end'] });
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-75%']);
+  // Create a stepped scroll effect so it "snaps" to each step.
+  // 0.15 pause, 0.10 transition, 0.20 pause, etc.
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.25, 0.45, 0.55, 0.75, 0.85, 1],
+    ['0%', '0%', '-25%', '-25%', '-50%', '-50%', '-75%', '-75%']
+  );
 
   const mobileContainerRef = useRef<HTMLDivElement>(null);
   const { scrollXProgress } = useScroll({ container: mobileContainerRef });
