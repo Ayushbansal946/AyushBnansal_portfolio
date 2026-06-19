@@ -71,7 +71,7 @@ export default function ProcessSection() {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="shrink-0 h-[360px] flex items-center py-4"
+              className="shrink-0 h-[360px] flex items-center py-4 relative overflow-hidden"
               style={{
                 width: '85vw',
                 scrollSnapAlign: 'start',
@@ -80,13 +80,23 @@ export default function ProcessSection() {
                 borderLeft: i > 0 ? '1px solid var(--border)' : 'none',
               }}
             >
-              <div>
+              <div className="relative z-10">
                 <span className="font-body font-bold text-accent block mb-5 tracking-[0.2em] uppercase text-[0.78rem]">{step.num}</span>
                 <h3
                   className="font-heading uppercase text-text-main leading-[0.9] tracking-[-0.02em] mb-5 whitespace-pre-line"
                   style={{ fontSize: 'clamp(2.2rem, 7vw, 3rem)' }}
                 >{step.title}</h3>
-                <p className="font-body text-text-muted leading-[1.6] text-[0.95rem]">{step.description}</p>
+                <p className="font-body text-text-muted leading-[1.6] text-[0.95rem] max-w-[85%]">{step.description}</p>
+              </div>
+
+              {/* Mobile Giant Number */}
+              <div className="absolute right-0 bottom-[10%] z-0 pointer-events-none select-none opacity-[0.07]">
+                <span 
+                  className="font-heading text-[60vw] leading-none text-transparent" 
+                  style={{ WebkitTextStroke: '1px var(--text-main)' }}
+                >
+                  {step.num.split(' ')[1]}
+                </span>
               </div>
             </div>
           ))}
@@ -156,9 +166,9 @@ export default function ProcessSection() {
             {steps.map((step, index) => (
               <div
                 key={index}
-                className={`w-[100vw] h-full flex items-center px-[5vw] shrink-0 ${index > 0 ? 'border-l border-border' : ''}`}
+                className={`w-[100vw] h-full flex items-center justify-between px-[5vw] shrink-0 relative ${index > 0 ? 'border-l border-border' : ''}`}
               >
-                <div className="w-full max-w-[680px]">
+                <div className="w-full max-w-[680px] relative z-10">
                   {/* Step number */}
                   <span
                     className="font-body font-bold text-accent block mb-8 tracking-[0.2em] uppercase text-fluid-step-num"
@@ -179,6 +189,16 @@ export default function ProcessSection() {
                   >
                     {step.description}
                   </p>
+                </div>
+
+                {/* Giant Background Number for Empty Space */}
+                <div className="hidden lg:flex absolute right-[10vw] top-1/2 -translate-y-1/2 z-0 pointer-events-none select-none opacity-20">
+                  <span 
+                    className="font-heading text-[28vw] leading-none text-transparent" 
+                    style={{ WebkitTextStroke: '2px var(--text-main)' }}
+                  >
+                    {step.num.split(' ')[1]}
+                  </span>
                 </div>
               </div>
             ))}
