@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🌟 Ayush Bansal | Premium UI/UX Portfolio v2.1
+# 🌟 Ayush Bansal | Premium UI/UX Portfolio v2.2
 
 *A stunning, dynamic UI/UX Designer portfolio engineered with React and Framer Motion, featuring a completely custom-built, secure Content Management System (Admin Dashboard) powered by Firebase.*
 
-![Portfolio Version](https://img.shields.io/badge/version-2.1-blue.svg?style=for-the-badge)
+![Portfolio Version](https://img.shields.io/badge/version-2.2-blue.svg?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-19-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF.svg?style=for-the-badge&logo=vite)
 ![Firebase](https://img.shields.io/badge/Firebase-12-FFCA28.svg?style=for-the-badge&logo=firebase&logoColor=white)
@@ -13,6 +13,15 @@
 **[Live Preview](https://ayush946portfolio.web.app) • [Admin Portal](https://ayush946portfolio.web.app/admin/login)**
 
 </div>
+
+<br />
+
+## 🚀 What's New in v2.2
+- **Deep UI QA & Accessibility:** Implemented global semantic focus states (`*:focus-visible`) for complete keyboard navigation support. Upgraded project cards to fully accessible `role="button"` elements.
+- **Micro-Interactions:** Added stepped "snapping" scroll animation to the desktop Process section for a premium, presentation-like feel. Enhanced hover states across experience items.
+- **Visual Polish:** Added giant background step numbers ("01", "02") to the Process section to beautifully balance the layout. Fixed broken ticker logos and added custom SVG support for ChatGPT and Microsoft 365 Copilot.
+- **Admin Demo Route:** Added a secure read-only `/demo-admin` route and linked it to the navigation bar to showcase the custom CMS without risking the production database.
+- **SEO & PWA:** Fully integrated Google Analytics (`gtag.js`), custom 404 pages, JSON-LD structured data, Apple Touch Icons, and a Web App Manifest.
 
 <br />
 
