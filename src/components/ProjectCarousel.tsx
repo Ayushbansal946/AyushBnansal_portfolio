@@ -38,7 +38,7 @@ export const ProjectCarousel = React.memo(function ProjectCarousel({ images, pro
 
   return (
     <div 
-      className="relative group aspect-[4/3] w-full overflow-hidden rounded-2xl bg-surface border border-border shadow-md transition-all duration-500 mb-2 cursor-pointer"
+      className="relative group aspect-[4/3] w-full overflow-hidden rounded-xl transition-all duration-500 mb-2 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

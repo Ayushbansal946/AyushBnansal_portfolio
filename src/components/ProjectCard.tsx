@@ -32,7 +32,7 @@ export const ProjectCard = React.memo(function ProjectCard({
     <div 
       role="button"
       tabIndex={0}
-      className="flex flex-col h-full cursor-pointer group outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-8 rounded-[4px]"
+      className="flex flex-col h-full cursor-pointer group outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-8 p-6 bg-surface border border-border rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
       onClick={() => setIsExpanded(!isExpanded)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
