@@ -32,7 +32,7 @@ export const ProjectCard = React.memo(function ProjectCard({
     <div 
       role="button"
       tabIndex={0}
-      className="flex flex-col h-full cursor-pointer group outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-8 p-6 bg-surface border border-border rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+      className="flex flex-col w-full cursor-pointer group outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-8 p-6 bg-surface border border-border rounded-[20px] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
       onClick={() => setIsExpanded(!isExpanded)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -43,7 +43,7 @@ export const ProjectCard = React.memo(function ProjectCard({
     >
       <ProjectCarousel images={images} tags={tags} projectName={title} />
 
-      <div className="flex items-start justify-between gap-4 mt-5">
+      <div className="flex flex-col mt-5">
         <div className="flex-1 w-full">
           
           <div className="flex items-baseline justify-between w-full mb-4">

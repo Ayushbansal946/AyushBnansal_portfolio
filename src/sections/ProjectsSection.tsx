@@ -30,7 +30,7 @@ export default function ProjectsSection() {
       </div>
 
       <div
-        className="grid grid-cols-1 md:grid-cols-2 px-6 md:px-[5vw] lg:px-[10vw] gap-12 md:gap-[80px]"
+        className="grid grid-cols-1 md:grid-cols-2 px-6 md:px-[5vw] lg:px-[10vw] gap-8 md:gap-x-10 md:gap-y-10 items-start"
       >
         {projects.map((project, index) => (
           <ProjectCard
