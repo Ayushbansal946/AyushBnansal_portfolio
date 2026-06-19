@@ -18,6 +18,7 @@
 
 ## 🚀 What's New in v2.2
 - **Deep UI QA & Accessibility:** Implemented global semantic focus states (`*:focus-visible`) for complete keyboard navigation support. Upgraded project cards to fully accessible `role="button"` elements.
+- **Project Card Redesign:** Encased each project in a premium `bg-surface` card with rounded corners, consistent padding, and a smooth hover-lift effect — matching the Certifications card style. Fixed grid layout for uniform card widths across mobile, tablet, and desktop.
 - **Micro-Interactions:** Added stepped "snapping" scroll animation to the desktop Process section for a premium, presentation-like feel. Enhanced hover states across experience items.
 - **Visual Polish:** Added giant background step numbers ("01", "02") to the Process section to beautifully balance the layout. Fixed broken ticker logos and added custom SVG support for ChatGPT and Microsoft 365 Copilot.
 - **Admin Demo Route:** Added a secure read-only `/demo-admin` route and linked it to the navigation bar to showcase the custom CMS without risking the production database.
