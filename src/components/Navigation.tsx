@@ -19,8 +19,9 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github } from './Icons';
+import { Menu, X, Github, Database } from './Icons';
 import { useProfileSettings } from '../hooks/useProfileSettings';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
   { label: 'HOME',       href: '#hero' },
@@ -127,6 +128,15 @@ export default function Navigation() {
               <Github size={18} strokeWidth={2} />
               <span className="hidden md:inline">Repository</span>
             </a>
+
+            {/* Admin Demo Link */}
+            <Link
+              to="/demo-admin"
+              className="flex items-center gap-2 text-text-main font-body text-[0.7rem] font-bold tracking-[0.15em] uppercase transition-colors duration-200 hover:text-accent no-underline"
+            >
+              <Database size={18} strokeWidth={2} />
+              <span className="hidden md:inline">Admin Demo</span>
+            </Link>
 
             {/* Hamburger button */}
             <button

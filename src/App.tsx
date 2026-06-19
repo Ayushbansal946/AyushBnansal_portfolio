@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import NotFound from './pages/NotFound';
+import DemoAdminDashboard from './pages/DemoAdminDashboard';
 
 function PortfolioHome() {
   return (
@@ -52,6 +53,7 @@ function App() {
               </ProtectedRoute>
             } 
           />
+          <Route path="/demo-admin" element={<DemoAdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
