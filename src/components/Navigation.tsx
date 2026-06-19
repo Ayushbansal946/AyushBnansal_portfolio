@@ -19,7 +19,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from './Icons';
+import { Menu, X, Github } from './Icons';
 import { useProfileSettings } from '../hooks/useProfileSettings';
 
 const navLinks = [
@@ -116,15 +116,28 @@ export default function Navigation() {
             </span>
           </div>
 
-          {/* Hamburger button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-            className="flex items-center justify-center w-[44px] h-[44px] text-text-main bg-transparent border-none cursor-pointer transition-colors duration-200 relative z-[60] hover:text-accent"
-          >
-            {isOpen ? <X size={26} strokeWidth={2} /> : <Menu size={26} strokeWidth={2} />}
-          </button>
+          <div className="flex items-center gap-4">
+            {/* Github Link */}
+            <a
+              href="https://github.com/Ayushbansal946/AyushBnansal_portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-text-main font-body text-[0.7rem] font-bold tracking-[0.15em] uppercase transition-colors duration-200 hover:text-accent no-underline"
+            >
+              <Github size={18} strokeWidth={2} />
+              <span className="hidden md:inline">Repository</span>
+            </a>
+
+            {/* Hamburger button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              className="flex items-center justify-center w-[44px] h-[44px] text-text-main bg-transparent border-none cursor-pointer transition-colors duration-200 relative z-[60] hover:text-accent"
+            >
+              {isOpen ? <X size={26} strokeWidth={2} /> : <Menu size={26} strokeWidth={2} />}
+            </button>
+          </div>
         </div>
       </nav>
 
