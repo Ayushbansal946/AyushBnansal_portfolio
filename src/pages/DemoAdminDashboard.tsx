@@ -167,7 +167,7 @@ export default function DemoAdminDashboard() {
     setData([...data, newItem]);
   };
 
-  const handleDeleteItem = async (id: string, index: number) => {
+  const handleDeleteItem = async (_id: string, index: number) => {
     if (data.length <= 1) {
       alert('You must have at least one item!');
       return;

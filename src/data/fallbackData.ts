@@ -141,7 +141,7 @@ export const fallbackSkills = [
   {
     id: 'skill_cat_1',
     title: '01 / Artificial Intelligence',
-    skills: ['Generative AI Integration', 'ChatGPT', 'Claude AI', 'Gemini', 'Visily.ai']
+    skills: ['Generative AI Integration', 'ChatGPT', 'Microsoft 365 Copilot', 'Claude AI', 'Gemini', 'Visily.ai']
   },
   {
     id: 'skill_cat_2',

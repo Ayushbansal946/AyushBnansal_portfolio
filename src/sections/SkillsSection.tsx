@@ -13,6 +13,7 @@
 import { motion } from 'framer-motion';
 import { useSectionData } from '../hooks/useSectionData';
 import { fallbackSkills } from '../data/fallbackData';
+import { ChatGPTIcon } from '../components/Icons';
 
 export default function SkillsSection() {
   const skillCategories = useSectionData('skills', fallbackSkills);
@@ -61,8 +62,10 @@ export default function SkillsSection() {
                 {category.skills.map((skill, i) => (
                   <span 
                     key={i}
-                    className={`px-4 py-2 rounded-[30px] border border-white/10 text-[0.85rem] font-body font-medium transition-all duration-200 bg-white/5 hover:bg-text-main hover:text-bg hover:border-text-main ${index === 0 ? 'text-accent' : 'text-text-light'}`}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-[30px] border border-white/10 text-[0.85rem] font-body font-medium transition-all duration-200 bg-white/5 hover:bg-text-main hover:text-bg hover:border-text-main ${index === 0 ? 'text-accent' : 'text-text-light'}`}
                   >
+                    {skill === 'ChatGPT' && <ChatGPTIcon size={16} />}
+                    {skill === 'Microsoft 365 Copilot' && <img src="https://res.cdn.office.net/officehub/images/content/images/unauth-odc/copilot-icon-513486c4f9.svg" alt="Copilot" className="w-4 h-4" />}
                     {skill}
                   </span>
                 ))}
