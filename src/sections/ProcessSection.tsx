@@ -26,8 +26,8 @@ const techStackLogos = [
   { name: 'React', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
   { name: 'TailwindCSS', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/tailwindcss.svg' },
   { name: 'Firebase', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg' },
-  { name: 'Microsoft 365', src: 'https://cdn.simpleicons.org/microsoft365/white' },
-  { name: 'ChatGPT', src: 'https://cdn.simpleicons.org/openai/white' },
+  { name: 'Microsoft 365', src: 'https://res.cdn.office.net/officehub/images/content/images/unauth-odc/copilot-icon-513486c4f9.svg' },
+  { name: 'ChatGPT', src: '/logos/chatgpt.svg' },
   { name: 'Gemini', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/gemini.svg' },
   { name: 'Claude', src: 'https://cdn.simpleicons.org/anthropic/white' },
   { name: 'Antigravity', isText: true }
