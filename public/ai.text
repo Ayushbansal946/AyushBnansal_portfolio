@@ -1,0 +1,24 @@
+# ai.txt - Machine-readable information for AI agents & crawlers
+# Specification: https://ayush946portfolio.web.app/ai.txt
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /demo-admin
+
+# Personal Information
+Name: Ayush Bansal
+Role: UI/UX Designer & Product Designer
+Website: https://ayush946portfolio.web.app/
+Contact-Email: ayushbansal946@gmail.com
+Phone: +91 7500039393
+LinkedIn: https://linkedin.com/in/ayush946
+Behance: https://behance.net/Ayush-bansal
+GitHub: https://github.com/Ayushbansal946
+
+# Specialization
+Summary: Ayush Bansal is a UI/UX Designer crafting intuitive digital experiences, responsive web design, mobile apps, and design systems.
+Tools: Figma, Adobe Illustrator, After Effects, Webflow, React, Tailwind CSS
+
+# LLM Context Document
+Context: https://ayush946portfolio.web.app/llms.txt

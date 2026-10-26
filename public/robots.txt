@@ -1,4 +1,26 @@
+# robots.txt for Ayush Bansal Portfolio
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /demo-admin
+Disallow: /demo-admin/
 
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemaps and LLM Context
 Sitemap: https://ayush946portfolio.web.app/sitemap.xml

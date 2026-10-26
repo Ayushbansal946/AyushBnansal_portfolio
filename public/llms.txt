@@ -1,0 +1,25 @@
+# Ayush Bansal — UI/UX Designer
+
+> Ayush Bansal is a UI/UX Designer specializing in intuitive digital products, mobile app interfaces, and design systems.
+
+## Contact & Links
+- **Portfolio:** https://ayush946portfolio.web.app/
+- **Email:** ayushbansal946@gmail.com
+- **Phone / WhatsApp:** +91 7500039393
+- **LinkedIn:** https://linkedin.com/in/ayush946
+- **Behance:** https://behance.net/Ayush-bansal
+- **GitHub:** https://github.com/Ayushbansal946
+
+## Professional Profile
+Ayush Bansal creates user-centered designs that bridge user needs and business goals. With a focus on clarity, aesthetics, and measurable impact, he designs mobile and web interfaces with high visual polish and interaction design.
+
+## Core Skills & Tools
+- **Design:** User Experience (UX), User Interface (UI), Wireframing, Rapid Prototyping, Design Systems, User Journeys, Usability Testing
+- **Tools:** Figma, Adobe Illustrator, After Effects, Miro, Webflow
+- **Technical Knowledge:** React, Tailwind CSS, HTML5, CSS3, Modern Web Performance
+
+## Featured Works
+1. **FOUNDRY:** Premium mobile app UI for men's accessories with rich product showcasing and seamless checkout flows.
+2. **DICE ACADEMY:** EdTech platform UI/UX overhaul improving student engagement, lesson progress clarity, and unified design system.
+3. **FITLIFE:** Health & wellness mobile app focused on daily workout tracking, gamification, and habit retention.
+4. **THE HUNGRY BEAR:** Fine dining website streamlining online reservation systems and culinary branding.

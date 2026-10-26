@@ -1,67 +1,3 @@
-/**
- * ContactForm.tsx — Interactive contact form on orange background
- * 
- * Renders the portfolio contact form with:
- *   - Floating labels (slide up when input is focused or filled)
- *   - Loading state during submission
- *   - Success banner with bounce animation
- *   - Error message display
- * 
- * All input styling uses WHITE borders and white text for maximum contrast
- * on the orange (#FF4925) ContactSection background.
- * 
- * =========================================================================
- *                   BACKEND INTEGRATION GUIDE (FREE SERVICES)
- * =========================================================================
- * 
- * OPTION A: EmailJS — Client-Side Only, FREE 200 emails/month
- * ─────────────────────────────────────────────────────────────
- * 1. npm install @emailjs/browser
- * 2. Sign up at https://www.emailjs.com/ → link your Gmail
- * 3. Create a template with {{from_name}}, {{reply_to}}, {{message}}
- * 4. Replace the mock delay in handleSubmit with:
- *    ```typescript
- *    import emailjs from '@emailjs/browser';
- *    await emailjs.send(
- *      'YOUR_SERVICE_ID',
- *      'YOUR_TEMPLATE_ID',
- *      { from_name: formData.name, reply_to: formData.email, message: formData.message },
- *      'YOUR_PUBLIC_KEY'
- *    );
- *    ```
- * 
- * OPTION B: Resend + Vercel Serverless — FREE 3,000 emails/month
- * ─────────────────────────────────────────────────────────────
- * 1. Create api/contact.ts in your Vercel project:
- *    ```typescript
- *    import { Resend } from 'resend';
- *    const resend = new Resend(process.env.RESEND_API_KEY);
- *    export async function POST(req: Request) {
- *      const { name, email, message } = await req.json();
- *      await resend.emails.send({
- *        from: 'Portfolio <onboarding@resend.dev>',
- *        to: 'ayushbansal946@gmail.com',
- *        subject: `Message from ${name}`,
- *        html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Message:</b> ${message}</p>`
- *      });
- *      return Response.json({ success: true });
- *    }
- *    ```
- * 2. Replace mock delay with: fetch('/api/contact', { method: 'POST', ... })
- * 
- * OPTION C: Firebase Firestore — FREE 50k reads/day
- * ─────────────────────────────────────────────────────────────
- * 1. npm install firebase
- * 2. Initialize Firebase, get a Firestore instance
- * 3. Replace mock delay with:
- *    ```typescript
- *    await addDoc(collection(db, 'contacts'), {
- *      name: formData.name, email: formData.email,
- *      message: formData.message, timestamp: new Date()
- *    });
- *    ```
- */
-
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import Button from './Button';
@@ -79,6 +15,44 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === 'loading') return;
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    // Input sanitization & validation
+    if (!trimmedName || trimmedName.length < 2) {
+      setStatus('error');
+      setErrorMessage('Please enter your name (at least 2 characters).');
+      return;
+    }
+
+    if (trimmedName.length > 80) {
+      setStatus('error');
+      setErrorMessage('Name cannot exceed 80 characters.');
+      return;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setStatus('error');
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (!trimmedMessage || trimmedMessage.length < 5) {
+      setStatus('error');
+      setErrorMessage('Please enter a message (at least 5 characters).');
+      return;
+    }
+
+    if (trimmedMessage.length > 3000) {
+      setStatus('error');
+      setErrorMessage('Message cannot exceed 3000 characters.');
+      return;
+    }
+
     setStatus('loading');
     setErrorMessage('');
 
@@ -97,7 +71,7 @@ export function ContactForm() {
     } catch (error) {
       console.error('EmailJS Error:', error);
       setStatus('error');
-      setErrorMessage('Something went wrong. Please reach out directly via email.');
+      setErrorMessage('Something went wrong. Please reach out directly via email or WhatsApp.');
     }
   };
 
@@ -138,7 +112,6 @@ export function ContactForm() {
 
   // Shared input/textarea style
   const inputClassName = "block w-full bg-transparent border-none border-b-2 border-black/30 text-[#0c0c0c] text-[1.1rem] font-body pt-4 pb-3 outline-none transition-colors duration-200 focus:border-black/100";
-
   const labelClassName = "block font-body text-[0.85rem] font-semibold text-black/60 mb-1 tracking-[0.02em]";
 
   return (
@@ -158,6 +131,7 @@ export function ContactForm() {
           onChange={handleChange}
           placeholder="Ayush Bansal"
           required
+          maxLength={80}
           disabled={status === 'loading'}
           className={inputClassName}
         />
@@ -174,6 +148,7 @@ export function ContactForm() {
           onChange={handleChange}
           placeholder="hello@example.com"
           required
+          maxLength={100}
           disabled={status === 'loading'}
           className={inputClassName}
         />
@@ -190,6 +165,7 @@ export function ContactForm() {
           placeholder="I'd love to work on..."
           rows={4}
           required
+          maxLength={3000}
           disabled={status === 'loading'}
           className={`${inputClassName} resize-none leading-[1.6]`}
         />
