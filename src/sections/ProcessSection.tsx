@@ -17,7 +17,7 @@ const steps = [
 
 const techStackLogos = [
   { name: 'Figma', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/figma.svg' },
-  { name: 'Adobe Express', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/adobe.svg' },
+  { name: 'Adobe Creative Cloud', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/adobe.svg' },
   { name: 'Canva', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/canva.svg' },
   { name: 'HTML5', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/html5.svg' },
   { name: 'CSS3', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/css.svg' },
@@ -26,14 +26,14 @@ const techStackLogos = [
   { name: 'React', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
   { name: 'TailwindCSS', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/tailwindcss.svg' },
   { name: 'Firebase', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg' },
-  { name: 'Microsoft 365', src: 'https://res.cdn.office.net/officehub/images/content/images/unauth-odc/copilot-icon-513486c4f9.svg' },
-  { name: 'ChatGPT', src: '/logos/chatgpt.svg' },
-  { name: 'Gemini', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/gemini.svg' },
-  { name: 'Claude', src: 'https://cdn.simpleicons.org/anthropic/white' },
-  { name: 'Antigravity', isText: true }
+  { name: 'Microsoft Copilot', src: 'https://res.cdn.office.net/officehub/images/content/images/unauth-odc/copilot-icon-513486c4f9.svg' },
+  { name: 'OpenAI ChatGPT', src: '/logos/chatgpt.svg' },
+  { name: 'Google Gemini', src: 'https://raw.githubusercontent.com/pheralb/svgl/main/static/library/gemini.svg' },
+  { name: 'Claude AI', src: 'https://cdn.simpleicons.org/anthropic/white' },
+  { name: 'Antigravity Agent', isText: true }
 ];
-// Double it for seamless loop
-const marqueeItems = [...techStackLogos, ...techStackLogos];
+// Quadruple items to guarantee seamless looping across all screen widths up to 4K
+const marqueeItems = [...techStackLogos, ...techStackLogos, ...techStackLogos, ...techStackLogos];
 
 export default function ProcessSection() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -236,25 +236,58 @@ export default function ProcessSection() {
       </section>
 
       {/* ══════════════════════════════════════
-          TECH STACK MARQUEE
+          TECH STACK MARQUEE (Pauses on Hover + Interactive Tooltips)
       ══════════════════════════════════════ */}
-      <div className="w-full bg-surface py-6 overflow-hidden relative flex items-center border-t border-border">
-        <motion.div
-          className="flex whitespace-nowrap"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-        >
+      <div 
+        className="marquee-container w-full bg-surface pt-10 pb-8 overflow-x-hidden relative flex items-center border-t border-border select-none"
+        aria-label="Technologies and Tools Marquee"
+      >
+        {/* Left & Right gradient edge masks for smooth fade transitions */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-surface via-surface/85 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface via-surface/85 to-transparent z-20 pointer-events-none" />
+
+        <div className="marquee-track flex whitespace-nowrap items-center">
           {marqueeItems.map((item, idx) => (
-            <div key={idx} className="flex items-center mx-6">
-              {item.isText ? (
-                <span className="font-heading uppercase text-text-main text-xl tracking-widest">{item.name}</span>
-              ) : (
-                <img src={item.src} alt={item.name} className="h-7 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity" title={item.name} />
-              )}
-              <span className="text-accent mx-6 text-xl">✦</span>
+            <div
+              key={idx}
+              tabIndex={0}
+              className="group/item relative flex items-center mx-5 py-2 cursor-pointer outline-none"
+              aria-label={item.name}
+            >
+              {/* Tooltip Popup / Hint — appears on hover or focus */}
+              <div
+                role="tooltip"
+                className="absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none opacity-0 scale-90 translate-y-1 group-hover/item:opacity-100 group-hover/item:scale-100 group-hover/item:translate-y-0 group-focus/item:opacity-100 group-focus/item:scale-100 group-focus/item:translate-y-0 transition-all duration-200 ease-out z-40"
+              >
+                <div className="relative bg-[#0d0d0d] text-white text-[11px] font-body font-bold uppercase tracking-[0.12em] px-3 py-1.5 rounded-lg border border-border shadow-[0_8px_24px_rgba(0,0,0,0.7)] whitespace-nowrap flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0" />
+                  <span>{item.name}</span>
+                  {/* Downward triangle arrow pointing to the logo */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-[#0d0d0d]" />
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 -z-10 w-0 h-0 border-x-[5px] border-x-transparent border-t-[5px] border-t-border" />
+                </div>
+              </div>
+
+              {/* Logo / Text Icon with subtle scale-up on hover */}
+              <div className="flex items-center justify-center h-8 transition-transform duration-200 group-hover/item:scale-115">
+                {item.isText ? (
+                  <span className="font-heading uppercase text-text-main text-lg tracking-widest transition-colors duration-200 group-hover/item:text-accent select-none">
+                    {item.name}
+                  </span>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.name}
+                    className="h-7 w-auto max-w-[100px] object-contain opacity-70 group-hover/item:opacity-100 transition-opacity duration-200 select-none drop-shadow-sm"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+
+              <span className="text-accent/50 mx-5 text-base select-none">✦</span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </>
   );

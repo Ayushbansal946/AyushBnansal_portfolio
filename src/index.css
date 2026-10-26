@@ -55,8 +55,6 @@
   --font-sans:    var(--font-sans);
 }
 
-
-
 /* ── Base ── */
 html {
   scroll-behavior: smooth;
@@ -111,7 +109,6 @@ input:focus-visible, textarea:focus-visible {
   outline: none; /* Handled by internal border-b styles */
 }
 
-
 /* -- Fluid Typography Utilities --
    These replace repetitive inline style={{ fontSize: 'clamp(...)' }}
    across sections, keeping visuals identical but code cleaner.
@@ -139,6 +136,24 @@ input:focus-visible, textarea:focus-visible {
   0%   { transform: scale(1); opacity: 0.6; }
   70%  { transform: scale(1.6); opacity: 0; }
   100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* -- Infinite Tech Stack Marquee with Hover Pause -- */
+@keyframes marqueeScroll {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .marquee-track,
+.marquee-container:focus-within .marquee-track {
+  animation-play-state: paused !important;
 }
 
 @layer utilities {
