@@ -1,40 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141414" />
-      <stop offset="100%" stop-color="#0A0A0A" />
-    </linearGradient>
+  <!-- Deep Dark Background -->
+  <rect x="16" y="16" width="480" height="480" rx="110" fill="#0A0A0A" stroke="#262626" stroke-width="16" />
 
-    <!-- Electric Blue Gradient -->
-    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#246eff" />
-      <stop offset="100%" stop-color="#0055ff" />
-    </linearGradient>
+  <!-- Electric Blue Accent Dot (Top-Right) -->
+  <circle cx="392" cy="112" r="32" fill="#0055FF" />
 
-    <!-- Subtle Glow for Accent Dot -->
-    <filter id="accentGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
+  <!-- Bold Modern 'A' Mark -->
+  <polygon points="256,88 394,412 324,412 292,336 220,336 188,412 118,412" fill="#FFFFFF" />
 
-  <!-- Squircle Base Frame -->
-  <rect x="12" y="12" width="488" height="488" rx="112" fill="url(#bgGrad)" stroke="#2A2A2A" stroke-width="12" />
+  <!-- Inner Cutout -->
+  <polygon points="256,185 288,276 224,276" fill="#0A0A0A" />
 
-  <!-- Electric Blue Top-Right Accent Dot -->
-  <circle cx="390" cy="110" r="26" fill="url(#accentGrad)" filter="url(#accentGlow)" />
-
-  <!-- Monogram Glyph 'A' -->
-  <!-- Outer Legs -->
-  <polygon points="256,110 290,110 410,390 345,390 312,315 200,315 167,390 102,390" fill="#F0F0F0" />
-
-  <!-- Inner Triangular Cutout -->
-  <polygon points="256,190 288,265 224,265" fill="#0A0A0A" />
-
-  <!-- Electric Blue Crossbar -->
-  <polygon points="194,280 318,280 305,310 207,310" fill="url(#accentGrad)" />
+  <!-- Electric Blue Accent Crossbar -->
+  <rect x="198" y="292" width="116" height="36" rx="6" fill="#0055FF" />
 </svg>
