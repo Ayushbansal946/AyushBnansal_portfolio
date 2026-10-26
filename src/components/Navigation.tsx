@@ -93,9 +93,14 @@ export default function Navigation() {
           <a
             href="#hero"
             onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-            className="font-heading text-[1.55rem] text-text-main tracking-[0.05em] transition-colors duration-200 leading-none no-underline hover:text-accent"
+            className="font-heading text-[1.55rem] text-text-main tracking-[0.05em] transition-colors duration-200 leading-none no-underline hover:text-accent flex items-center gap-2.5 group"
           >
-            AYUSH
+            <img
+              src="/favicon.svg?v=3"
+              alt="Ayush Bansal Logo"
+              className="w-7 h-7 rounded-[7px] border border-border group-hover:border-accent transition-all duration-300"
+            />
+            <span>AYUSH</span>
           </a>
 
           {/* Availability badge — center, desktop only */}
@@ -178,10 +183,14 @@ export default function Navigation() {
               transition={{ type: 'tween', duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               className="fixed top-0 right-0 z-[55] w-full max-w-[480px] h-full bg-bg border-l border-border flex flex-col justify-between"
             >
-              {/* ── Panel Header: Close button ── */}
+              {/* ── Panel Header: Brand + Close button ── */}
               <div
-                className="flex justify-end py-5 px-6 border-b border-border"
+                className="flex items-center justify-between py-5 px-6 border-b border-border"
               >
+                <div className="flex items-center gap-2.5">
+                  <img src="/favicon.svg?v=3" alt="Logo" className="w-6 h-6 rounded-[6px] border border-border" />
+                  <span className="font-heading text-lg text-text-main">AYUSH</span>
+                </div>
                 <button
                   onClick={() => setIsOpen(false)}
                   aria-label="Close menu"
