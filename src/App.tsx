@@ -9,6 +9,7 @@ import ExperienceSection from './sections/ExperienceSection';
 import CertificatesSection from './sections/CertificatesSection';
 import AboutSection from './sections/AboutSection';
 import ContactSection from './sections/ContactSection';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Admin Routes
 import Login from './pages/Login';
@@ -34,6 +35,7 @@ function PortfolioHome() {
         <AboutSection />
         <ContactSection />
       </main>
+      <WhatsAppButton />
     </div>
   );
 }
