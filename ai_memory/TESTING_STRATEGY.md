@@ -120,13 +120,26 @@
   ```
   * Ensures 100% pass rate across all 8 test suites.
 
+### 1.9 End-to-End (E2E) & Hands-on Browser Testing (Playwright)
+* **Definition:** Driving a real headless or visible browser (Chromium) to execute hands-on user workflows from end to end.
+* **Architecture (`playwright.config.ts`, `e2e/portfolio.spec.ts`):**
+  * **Page Load & SEO Metadata:** Verifies HTML title, meta tags, and canonical links in real Chromium DOM.
+  * **Hero Section & Actions:** Verifies wordmark rendering, subtitle tagline, and Resume download CTA.
+  * **Navigation & Mobile Drawer:** Verifies navbar, monogram brand logo, and responsive navigation items.
+  * **Interactive Project Accordion:** Clicks real project cards (e.g., FOUNDRY) to verify expansion and case study content.
+  * **Tech Stack Marquee & Tooltips:** Tests continuous marquee rendering, focus accessibility, and tool popup hints.
+  * **Form Input & Validation:** Types into Name, Email, and Message fields, verifying real validation behavior.
+  * **WhatsApp Floating Action Button:** Programmatically scrolls down the page to verify the button appears with the correct `wa.me/917500039393` link.
+
 ---
 
 ## 2. Test Execution Commands Quick Reference
 
 | Action | Command | Purpose |
 | :--- | :--- | :--- |
-| **Run all tests** | `npm run test` | Single execution of all test suites via Vitest. |
-| **Interactive Watch** | `npm run test:watch` | Re-runs tests on file changes during development. |
+| **Run Unit & Integration Tests** | `npm run test` | Single execution of all 9 Vitest suites (25 tests). |
+| **Interactive Watch** | `npm run test:watch` | Re-runs unit tests on file changes during development. |
+| **Run Playwright E2E Tests** | `npm run test:e2e` | Runs all 7 hands-on browser tests in headless Chromium. |
+| **Playwright Interactive UI** | `npm run test:e2e:ui` | Opens the graphical Playwright Test Runner with time-travel debugger. |
 | **Run single test file** | `npx vitest run src/test/<FileName>.test.tsx` | Targeted sanity test execution. |
-| **Full Production Check** | `npm run build && npm run test` | Pre-deployment smoke and regression gate. |
+| **Full Production Gate** | `npm run build && npm run test && npm run test:e2e` | Complete pre-deployment smoke, regression, and E2E gate. |

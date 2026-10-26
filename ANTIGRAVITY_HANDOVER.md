@@ -343,7 +343,7 @@ The codebase has a comprehensive automated testing suite built with **Vitest**, 
 
 ### 8.2 Test Commands
 ```bash
-# Run all tests once
+# Run all Vitest unit/integration tests
 npm run test
 
 # Run tests in interactive watch mode
@@ -355,14 +355,43 @@ npx vitest run src/test/ContactForm.test.tsx
 
 ---
 
-## 9. Complete Developer Runbook
+## 9. Hands-on Browser E2E Testing (Playwright)
 
-### 9.1 Environment Prerequisites
+The project includes an end-to-end browser automation suite built with **Playwright Test** and **Chromium**.
+
+### 9.1 E2E Test Suite (`e2e/portfolio.spec.ts`)
+| Test Spec | Target Area | What It Validates |
+| :--- | :--- | :--- |
+| **SEO & Document Title** | Header `<title>`, `<meta>` | Confirms exact document title and rich meta description in headless Chromium. |
+| **Hero Section & CTAs** | `HeroSection.tsx` | Verifies oversized `AYUSH®` wordmark, editorial tagline, and "Download Resume" link. |
+| **Navigation & Monogram** | `Navigation.tsx` | Verifies brand monogram SVG icon and navigation menu visibility. |
+| **Project Accordion Flow** | `ProjectsSection.tsx` | Clicks the `FOUNDRY` card, asserting accordion animation and case study content expansion. |
+| **Tech Marquee & Tooltips** | `ProcessSection.tsx` | Tests infinite ticker rendering, keyboard focus accessibility, and popup hint tooltips. |
+| **Interactive Form Validation** | `ContactSection.tsx` | Fills Name, Email, and Message inputs, asserting real DOM values and constraint handling. |
+| **WhatsApp Floating Button** | `WhatsAppButton.tsx` | Programmatically scrolls past 300px, asserting button appearance and `wa.me/917500039393` link. |
+
+### 9.2 Playwright Commands
+```bash
+# Run all E2E tests in headless Chromium
+npm run test:e2e
+
+# Launch the interactive Playwright UI Test Runner (with time-travel debugging)
+npm run test:e2e:ui
+
+# Install/update Playwright browser binaries
+npx playwright install chromium
+```
+
+---
+
+## 10. Complete Developer Runbook
+
+### 10.1 Environment Prerequisites
 * **Node.js:** `v22.17.1` or higher
 * **NPM:** `v11.10.0` or higher
 * **Operating System:** Windows / macOS / Linux
 
-### 9.2 Daily Commands
+### 10.2 Daily Commands
 ```bash
 # Install dependencies
 npm install
@@ -370,8 +399,11 @@ npm install
 # Start local Vite development server
 npm run dev
 
-# Run Vitest unit tests
+# Run Vitest unit tests (25 tests)
 npm run test
+
+# Run Playwright E2E browser tests (7 tests)
+npm run test:e2e
 
 # Compile production bundle (Typecheck + Vite build)
 npm run build
