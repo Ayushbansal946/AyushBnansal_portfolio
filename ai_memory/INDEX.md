@@ -8,6 +8,7 @@
 
 | File | Purpose | Key Contents |
 | :--- | :--- | :--- |
+| **[`ANTIGRAVITY_HANDOVER.md`](../ANTIGRAVITY_HANDOVER.md)** | **Master Handover Briefing** | Single comprehensive briefing file to paste to another Antigravity ID/agent. |
 | **[`PROJECT_OVERVIEW.md`](./PROJECT_OVERVIEW.md)** | Core Architecture & Spec | Author details, tech stack, directory tree, Firebase config, routing, data flows, and fallback systems. |
 | **[`TESTING_STRATEGY.md`](./TESTING_STRATEGY.md)** | Complete QA & Testing Guide | Full testing hierarchy (Static, Unit, Integration, System, Acceptance, Smoke, Sanity, Regression) and test execution commands. |
 | **[`DEPLOYMENT_AND_OPERATIONS.md`](./DEPLOYMENT_AND_OPERATIONS.md)** | Deployment & Runbooks | Git workflow, Firebase hosting/rules deployment commands, environment scripts, and live URLs. |
